@@ -1,6 +1,9 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
+pod 'React-Core', :path => '../node_modules/react-native/'
+pod 'React-CoreModules', :path => '../node_modules/react-native/React/CoreModules'
+
 platform :ios, '11.0'
 
 target 'app' do
