@@ -44,7 +44,7 @@ export default function login({navigation}) {
                             <Input type={show ? "text" : "password"} variant="underlined" size="md" placeholder="Password"
                                        InputRightElement={
                                        <Icon onPress={handleClick}
-                                           name="eye-slash" color="grey" size={20}
+                                             name={show ? "eye" : "eye-slash"} color={show ? "black" : "grey"} size={20}
                                        />}
                             />
                         </FormControl>

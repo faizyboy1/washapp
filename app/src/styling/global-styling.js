@@ -48,6 +48,12 @@ export const globalStyles = StyleSheet.create({
         paddingBottom: 10,
         paddingTop: 40
     },
+    shareText: {
+        fontWeight: 'bold',
+        fontSize: 24,
+        textAlign: 'center',
+        color: "#fff"
+    },
     termsParagraph: {
         fontSize: 14,
         lineHeight: 20,

@@ -39,7 +39,7 @@ export default function register({navigation}) {
                             <Input type={show ? "text" : "password"} variant="underlined" size="md" placeholder="Password"
                                    InputRightElement={
                                        <Icon onPress={handleClick}
-                                             name="eye-slash" color="grey" size={20}
+                                             name={show ? "eye" : "eye-slash"} color={show ? "black" : "grey"} size={20}
                                        />}
                             />
                         </FormControl>
@@ -47,7 +47,7 @@ export default function register({navigation}) {
                             <Input type={showC ? "text" : "password"} variant="underlined" size="md" placeholder="Confirm Password"
                                    InputRightElement={
                                        <Icon onPress={handleClickC}
-                                             name="eye-slash" color="grey" size={20}
+                                             name={showC ? "eye" : "eye-slash"} color={showC ? "black" : "grey"} size={20}
                                        />
                                        }
                             />

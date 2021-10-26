@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Share, Button } from 'react-native';
 import { globalStyles } from '../styling/global-styling';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import {HStack, NativeBaseProvider} from "native-base";
+import {HStack, Box as NBBox, NativeBaseProvider, Divider } from "native-base";
 
-export default function tellFriend() {
+/*export default function tellFriend() {
     return (
         <View style={globalStyles.tellHeader}>
             <Text style={globalStyles.tellSectionTitle}>Your Friends Deserve The best, Share our App with them!</Text>
@@ -17,4 +17,48 @@ export default function tellFriend() {
             </NativeBaseProvider>
         </View>
     );
-}
+}*/
+
+const Box = (props) => {
+    return <NBBox px={6} py={2} m={7} borderRadius="md" bg="#08a0e9" {...props} />;
+};
+
+const tellFriend = () => {
+    const onShare = async () => {
+        try {
+            const result = await Share.share({
+                message:
+                    'React Native | A framework for building native apps using React',
+            });
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    // shared with activity type of result.activityType
+                } else {
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+    return (
+        <View style={globalStyles.tellHeader}>
+            <Text style={globalStyles.tellSectionTitle}>Your Friends Deserve The best, Share our App with them!</Text>
+            <NativeBaseProvider>
+                <View>
+                    <Divider bg="#EBEBE4"/>
+                </View>
+                <Box>
+                    <HStack space={5}>
+                        <Icon onPress={onShare} name="share" size={30} color="#fff" />
+                        <Text onPress={onShare} style={globalStyles.shareText}>Share App!</Text>
+                    </HStack>
+                </Box>
+            </NativeBaseProvider>
+        </View>
+    );
+};
+
+export default tellFriend;
