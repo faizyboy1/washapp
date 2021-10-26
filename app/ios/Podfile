@@ -3,6 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 pod 'React-Core', :path => '../node_modules/react-native/'
 pod 'React-CoreModules', :path => '../node_modules/react-native/React/CoreModules'
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 platform :ios, '11.0'
 

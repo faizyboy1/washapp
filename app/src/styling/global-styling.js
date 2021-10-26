@@ -2,6 +2,22 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 export const globalStyles = StyleSheet.create({
+    container: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    map: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
     loginView:{
         flex: 1,
         justifyContent: 'center',
@@ -12,11 +28,25 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    tellHeader:{
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 15,
+    },
     termSectionTitle: {
       fontWeight: 'bold',
       fontSize: 20,
         textAlign: 'center',
         paddingBottom: 10
+    },
+    tellSectionTitle: {
+        fontWeight: 'bold',
+        fontSize: 24,
+        textAlign: 'center',
+        paddingBottom: 10,
+        paddingTop: 40
     },
     termsParagraph: {
         fontSize: 14,
