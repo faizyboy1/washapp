@@ -11,6 +11,9 @@ export const globalStyles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
+    rescheduleIcon:{
+        color: "#0d9488",
+    },
     map: {
         position: 'absolute',
         top: 0,

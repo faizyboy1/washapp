@@ -20,7 +20,7 @@ import {HStack, Box as NBBox, NativeBaseProvider, Divider } from "native-base";
 }*/
 
 const Box = (props) => {
-    return <NBBox px={6} py={2} m={7} borderRadius="md" bg="#08a0e9" {...props} />;
+    return <NBBox px={6} py={2} m={7} borderRadius="md" bg="#0d9488" {...props} />;
 };
 
 const tellFriend = () => {

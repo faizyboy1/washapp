@@ -18,7 +18,7 @@ export default function register({navigation}) {
                 <Box p="8">
                     <VStack space="5">
                         <Center px="3">
-                            <Image
+                            <Image size="xl" resizeMode="contain"
                                 source={logoImage}
                                 alt="WashApp"
                             />
