@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Switch } from 'react-native';
 import { globalStyles } from '../styling/global-styling';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export default function home({ navigation }) {
     return (
@@ -11,3 +12,4 @@ export default function home({ navigation }) {
         </View>
     );
 }
+

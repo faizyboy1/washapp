@@ -20,18 +20,18 @@ const { width, height } = Dimensions.get("window");
 
 const onBoardings = [
     {
-        title: "Let's Travelling",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+        title: "Car Washing",
+        description: "Wash Your Car with us to get the best Service!",
         img: onboarding1
     },
     {
-        title: "Navigation",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+        title: "Car Washing",
+        description: "Wash Your Car with us to get the best Service!",
         img: onboarding2
     },
     {
-        title: "Destination",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+        title: "Car Washing",
+        description: "Wash Your Car with us to get the best Service!",
         img: onboarding3
     }
 ];
@@ -111,9 +111,30 @@ const OnBoarding = ({navigation}) => {
                         <TouchableOpacity
                             style={{
                                 position: 'absolute',
+                                left: 0,
+                                bottom: 0,
+                                width: 100,
+                                height: 60,
+                                paddingRight: 20,
+                                justifyContent: 'center',
+                                borderTopLeftRadius: 0,
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 30,
+                                borderTopRightRadius: 30,
+                                backgroundColor: "#0d9488",
+                            }}
+                            onPress={() =>
+                                navigation.navigate('navigationStack')}
+                        >
+                            <Text style={{ color: "white", textAlign: "right" }}>{completed ? "Let's Go" : "Skip"}</Text>
+                        </TouchableOpacity>
+                        {!completed &&
+                        <TouchableOpacity
+                            style={{
+                                position: 'absolute',
                                 right: 0,
                                 bottom: 0,
-                                width: 150,
+                                width: 100,
                                 height: 60,
                                 paddingLeft: 20,
                                 justifyContent: 'center',
@@ -121,13 +142,17 @@ const OnBoarding = ({navigation}) => {
                                 borderBottomLeftRadius: 30,
                                 borderBottomRightRadius: 0,
                                 borderTopRightRadius: 0,
-                                backgroundColor: "blue"
+                                backgroundColor: "#0d9488",
                             }}
                             onPress={() =>
-                                navigation.navigate('navigationStack')}
+                            {Animated.event([
+                                { nativeEvent: { contentOffset: { x: scrollX } } },
+                            ], { useNativeDriver: false })}}
                         >
-                            <Text style={{ color: "white" }}>{completed ? "Let's Go" : "Skip"}</Text>
+                            <Text style={{color: "white"}}>Next</Text>
                         </TouchableOpacity>
+                        }
+
                     </View>
                 ))}
             </Animated.ScrollView>
@@ -201,7 +226,7 @@ const styles = StyleSheet.create({
     },
     dot: {
         borderRadius: 12,
-        backgroundColor: "blue",
+        backgroundColor: "#0d9488",
         marginHorizontal: 12 / 2
     }
 });

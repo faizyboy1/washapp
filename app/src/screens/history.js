@@ -9,7 +9,6 @@ export default function records() {
     return (
         <View style={globalStyles.termsHeader}>
             <NativeBaseProvider>
-                <Badge title="HISTORY"/>
                 <HStack space={3} alignItems="center">
                     <Text w="40"> Sep 20, 2021 </Text>
                     <Text w="20"> Family Car </Text>

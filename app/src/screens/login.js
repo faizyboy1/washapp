@@ -45,10 +45,10 @@ export default function login({navigation}) {
                                        />}
                             />
                         </FormControl>
-                        <Text> <Link _text={{color: "blue.400"}} mt={-0.5} onPress={() =>
+                        <Text> <Link _text={{color: "blue.500"}} mt={-0.5} onPress={() =>
                             navigation.navigate('Register')}>Join Us Now</Link> </Text>
                     </VStack>
-                    <Button mt="2" colo onPress={() =>
+                    <Button mt="2" onPress={() =>
                         navigation.navigate('Drawer')}>Log-in</Button>
                 </Box>
             </NativeBaseProvider>

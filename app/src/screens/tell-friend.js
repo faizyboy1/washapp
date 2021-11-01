@@ -1,26 +1,11 @@
 import React from 'react';
-import { Text, View, Share, Button } from 'react-native';
+import { Text, View, Share, StatusBar } from 'react-native';
 import { globalStyles } from '../styling/global-styling';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import {HStack, Box as NBBox, NativeBaseProvider, Divider } from "native-base";
-
-/*export default function tellFriend() {
-    return (
-        <View style={globalStyles.tellHeader}>
-            <Text style={globalStyles.tellSectionTitle}>Your Friends Deserve The best, Share our App with them!</Text>
-            <NativeBaseProvider>
-                <HStack space={20} alignItems="center" justifyContent="center" mt={20}>
-                    <Icon name="twitter" size={40} color="#08a0e9" />
-                    <Icon name="instagram" size={40} color="#515BD4" />
-                    <Icon name="whatsapp" size={40} color="#25D366" />
-                </HStack>
-            </NativeBaseProvider>
-        </View>
-    );
-}*/
+import { HStack, Box as NBBox, NativeBaseProvider, Divider } from "native-base";
 
 const Box = (props) => {
-    return <NBBox px={6} py={2} m={7} borderRadius="md" bg="#0d9488" {...props} />;
+    return <NBBox px={6} py={2} m={7} borderRadius="md" bg="#14b8a6" {...props} />;
 };
 
 const tellFriend = () => {
@@ -28,7 +13,7 @@ const tellFriend = () => {
         try {
             const result = await Share.share({
                 message:
-                    'React Native | A framework for building native apps using React',
+                    'WashApp is your best choice to clean your car!',
             });
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
@@ -45,10 +30,11 @@ const tellFriend = () => {
     };
     return (
         <View style={globalStyles.tellHeader}>
+            <StatusBar style={{backgroundColor: "#fff"}}/>
             <Text style={globalStyles.tellSectionTitle}>Your Friends Deserve The best, Share our App with them!</Text>
             <NativeBaseProvider>
                 <View>
-                    <Divider bg="#EBEBE4"/>
+                    <Divider bg="#115e59"/>
                 </View>
                 <Box>
                     <HStack space={5}>

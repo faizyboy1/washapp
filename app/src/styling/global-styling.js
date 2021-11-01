@@ -42,14 +42,15 @@ export const globalStyles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 20,
         textAlign: 'center',
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     tellSectionTitle: {
         fontWeight: 'bold',
         fontSize: 24,
         textAlign: 'center',
         paddingBottom: 10,
-        paddingTop: 40
+        paddingTop: 40,
+        color: '#115e59'
     },
     shareText: {
         fontWeight: 'bold',
