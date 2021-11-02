@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import DrawerNavigator from "./src/stacks/drawer";
-
-const Drawer = createDrawerNavigator();
-const Stack = createNativeStackNavigator();
+import TourNavigator from "./src/stacks/tourStack";
+import './src/lang/index';
 
 function App() {
     return (
         <NavigationContainer>
-            <DrawerNavigator />
+            <TourNavigator />
         </NavigationContainer>
     );
 }

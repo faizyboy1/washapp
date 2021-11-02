@@ -28,10 +28,7 @@ export default function login({navigation}) {
                 <Box p="8">
                     <VStack space="12">
                         <Center px="3">
-                            <Image
-                                source={logoImage}
-                                alt="WashApp"
-                            />
+                            <Image size="xl" resizeMode="contain" source={logoImage} alt="WashApp" />
                         </Center>
                         <FormControl space="3">
                             <Input variant="underlined" size="md" placeholder="Phone No."
@@ -48,10 +45,11 @@ export default function login({navigation}) {
                                        />}
                             />
                         </FormControl>
-                        <Text> <Link _text={{color: "blue.400"}} mt={-0.5} onPress={() =>
+                        <Text> <Link _text={{color: "blue.500"}} mt={-0.5} onPress={() =>
                             navigation.navigate('Register')}>Join Us Now</Link> </Text>
                     </VStack>
-                    <Button mt="2">Log-in</Button>
+                    <Button mt="2" onPress={() =>
+                        navigation.navigate('Drawer')}>Log-in</Button>
                 </Box>
             </NativeBaseProvider>
         </View>

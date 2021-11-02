@@ -18,17 +18,13 @@ export default function register({navigation}) {
                 <Box p="8">
                     <VStack space="5">
                         <Center px="3">
-                            <Image
+                            <Image size="xl" resizeMode="contain"
                                 source={logoImage}
                                 alt="WashApp"
                             />
                         </Center>
                         <FormControl space="3">
-                            <Input InputLeftElement={
-                                <Icon
-                                    name="user" color="grey" size={20}
-                                />
-                            } placeholder="Name" variant="underlined" size="md" />
+                            <Input placeholder="Name" variant="underlined" size="md" />
                         </FormControl>
                         <FormControl space="3">
                             <Input InputLeftElement={
@@ -56,7 +52,7 @@ export default function register({navigation}) {
                             <Text> I agree to <Link onPress={() =>
                                 navigation.navigate('Terms and Conditions')} _text={{color: "blue.400"}} mt={-0.5} href="">Terms and Conditions</Link> </Text>
                         </Checkbox>
-                        <Text> <Link _text={{color: "blue.400"}} mt={-0.5} onPress={() =>
+                        <Text> <Link _text={{color: "blue.500"}} mt={-0.5} onPress={() =>
                             navigation.navigate('Login')}>Already Have an Account?</Link> </Text>
                     </VStack>
                     <Button mt="2">Register</Button>

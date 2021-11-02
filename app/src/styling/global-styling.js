@@ -11,6 +11,9 @@ export const globalStyles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
+    rescheduleIcon:{
+        color: "#0d9488",
+    },
     map: {
         position: 'absolute',
         top: 0,
@@ -39,14 +42,15 @@ export const globalStyles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 20,
         textAlign: 'center',
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     tellSectionTitle: {
         fontWeight: 'bold',
         fontSize: 24,
         textAlign: 'center',
         paddingBottom: 10,
-        paddingTop: 40
+        paddingTop: 40,
+        color: '#115e59'
     },
     shareText: {
         fontWeight: 'bold',
