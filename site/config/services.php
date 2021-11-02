@@ -30,4 +30,14 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sms' => [
+        'username' => env('SMS_USERNAME'),
+        'sender_name'=>env('SMS_SENDER_NAME'),
+        'key' => env('SMS_KEY'),
+    ],
+
+    'firebase' => [
+        'key' => env('FIREBASE_KEY'),
+    ]
+
 ];
