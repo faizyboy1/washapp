@@ -5,9 +5,7 @@ import {globalStyles} from "../styling/global-styling";
 import Divider from '../components/divider';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 
-const logoImage = require("../assets/no-car.png");
-
-export default function cars({navigation}) {
+export default function cars() {
     return (
         <View style={globalStyles.termsHeader}>
             <NativeBaseProvider>
