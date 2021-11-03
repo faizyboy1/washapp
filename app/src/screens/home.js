@@ -11,11 +11,6 @@ export default function home({ navigation }) {
             <Text style={{textAlign:"center"}} onPress={() => navigation.navigate("ConfirmAddress")}>
                 {t('Welcome')}
             </Text>
-            <Button title={'Language'}
-                    onPress={() => {
-                        i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
-                    }}
-            />
         </View>
     );
 }

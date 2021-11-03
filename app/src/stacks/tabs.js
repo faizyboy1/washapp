@@ -1,5 +1,6 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import i18n from '../lang/index';
 
 import History from "../screens/history";
 import Scheduled from "../screens/scheduled";
@@ -16,8 +17,8 @@ const TabNavigator = () => {
                 backgroundColor: "#14b8a6"
             }
         }}>
-            <Tabs.Screen name="History" component={History}/>
-            <Tabs.Screen name="Upcoming" component={Scheduled} />
+            <Tabs.Screen name="History" options={{title:i18n.t("history")}} component={History}/>
+            <Tabs.Screen name="Upcoming" options={{title:i18n.t("upcoming")}} component={Scheduled} />
         </Tabs.Navigator>
     );
 };

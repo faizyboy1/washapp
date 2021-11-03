@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import  { I18nManager} from "react-native";
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -9,32 +10,37 @@ const resources = {
         translation: {
             "Welcome": "Welcome to React and react-i18next",
             "homeTitle": "Home",
+            "recordsTitle": "Records",
             "carsTitle": "Saved Cars",
             "tellFriendTitle": "Share With Friends",
             "termsTitle": "Terms & Conditions",
+            "history": "History",
+            "upcoming": "Upcoming",
+            "language": "اللغة العربية",
         }
     },
     ar: {
         translation: {
             "Welcome": "مرحبًا بالعالم",
             "homeTitle": "الصفحة الرئيسية",
+            "recordsTitle": "سجلاتي",
             "carsTitle": "السيارات",
             "tellFriendTitle": "مشاركة التطبيق مع الأصدقاء",
             "termsTitle": "الأحكام والشروط",
+            "history": "السجلات",
+            "upcoming": "الحجوزات القادمة",
+            "language": "English",
         }
     }
 };
 
 i18n
-    .use(initReactI18next) // passes i18n down to react-i18next
+    .use(initReactI18next)
     .init({
         resources,
-        lng: "en", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
-        // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
-        // if you're using a language detector, do not define the lng option
-
+        lng: I18nManager.isRTL ? 'ar' : 'en',
         interpolation: {
-            escapeValue: false // react already safes from xss
+            escapeValue: false
         }
     });
 

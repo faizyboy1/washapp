@@ -1,18 +1,17 @@
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { TouchableOpacity, I18nManager } from "react-native";
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navigation/drawer";
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
+import i18n from '../lang/index';
+
 import Home from "../screens/home";
 import Terms from '../screens/terms';
 import Cars from '../screens/cars';
 import TellFriend from '../screens/tell-friend';
 import Records from '../stacks/tabs';
-import Icon from 'react-native-vector-icons/dist/FontAwesome5';
-import { useTranslation } from 'react-i18next';
 
-export default function DrawerNavigator ({navigation}) {
+export default function DrawerNavigator ({navigation, t}) {
     const Drawer = createDrawerNavigator();
-
-    const { t, i18n } = useTranslation();
 
     const screenOptionStyle = {
         headerTintColor: "white",
@@ -20,21 +19,25 @@ export default function DrawerNavigator ({navigation}) {
             backgroundColor: '#14b8a6',
         },
         drawerActiveTintColor: "#14b8a6",
+        drawerType: "slide",
     };
 
     const HomeOptions = {
-        drawerLabel: "Home",
-        drawerIcon: (drawerTintColor) => <Icon name="home" size={20} color="#14b8a6"/>
+        title: i18n.t("homeTitle"),
+        drawerLabel: i18n.t("homeTitle"),
+        drawerIcon: ({ focused }) => <Icon name="home" size={20} color={focused ? '#14b8a6' : 'grey'}/>
     };
 
     const RecordsOptions = {
-        drawerLabel: "Records",
-        drawerIcon: () => <Icon name="file-alt" size={25} color="grey"/>
+        title: i18n.t("recordsTitle"),
+        drawerLabel: i18n.t("recordsTitle"),
+        drawerIcon: ({ focused }) => <Icon name="file-alt" size={25} color={focused ? '#14b8a6' : 'grey'}/>
     };
 
     const CarsOptions = {
-        drawerLabel: "Saved Cars",
-        drawerIcon: () => <Icon name="car" size={20} color="grey"/>,
+        title: i18n.t("carsTitle"),
+        drawerLabel: i18n.t("carsTitle"),
+        drawerIcon: ({ focused }) => <Icon name="car" size={20} color={focused ? '#14b8a6' : 'grey'}/>,
         headerRight: () => (
             <TouchableOpacity onPress={() =>
                 navigation.navigate('addCar')} style={{paddingRight: 12}}>
@@ -44,17 +47,38 @@ export default function DrawerNavigator ({navigation}) {
     };
 
     const TellFriendOptions = {
-        drawerLabel: "Share With Friends",
-        drawerIcon: () => <Icon name="share" size={20} color="grey"/>
+        title: i18n.t("tellFriendTitle"),
+        drawerLabel: i18n.t("tellFriendTitle"),
+        drawerIcon: ({ focused }) => <Icon name="share" size={20} color={focused ? '#14b8a6' : 'grey'}/>
     };
 
     const TermsOptions = {
-        drawerLabel: "Terms & Conditions",
-        drawerIcon: () => <Icon name="file-contract" size={25} color="grey"/>,
+        title: i18n.t("termsTitle"),
+        drawerLabel: i18n.t("termsTitle"),
+        drawerIcon: ({ focused }) => <Icon name="file-contract" size={25} color={focused ? '#14b8a6' : 'grey'}/>,
     };
 
     return (
-        <Drawer.Navigator screenOptions={screenOptionStyle}>
+        <Drawer.Navigator
+            screenOptions={screenOptionStyle}
+            drawerContent={props => {
+                return (
+                    <DrawerContentScrollView {...props}>
+                        <DrawerItemList {...props} />
+                        <DrawerItem label={i18n.t("language")}
+                                    onPress={() => i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')
+                                        .then(() => {
+                                            I18nManager.forceRTL(i18n.language === 'ar');
+                                        }).catch(function(error) {
+                                            alert('There has been a problem with your fetch operation: ' + error.message);
+                                            // ADD THIS THROW error
+                                            throw error;
+                                        })}
+                                    icon={({ focused }) => <Icon size={25} name={'globe-asia'} color={focused ? '#14b8a6' : 'grey'} />}
+                        />
+                    </DrawerContentScrollView>
+                )
+            }}>
             <Drawer.Screen name="Home" component={Home} options={HomeOptions}/>
             <Drawer.Screen name="Records" component={Records} options={RecordsOptions}/>
             <Drawer.Screen name="Cars" component={Cars} options={CarsOptions}/>

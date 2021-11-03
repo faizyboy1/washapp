@@ -3,7 +3,6 @@ import { NativeBaseProvider, HStack, Text } from "native-base"
 import { View } from "react-native";
 import {globalStyles} from "../styling/global-styling";
 import Divider from '../components/divider';
-import Badge from '../components/badge';
 
 export default function records() {
     return (

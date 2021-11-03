@@ -31,7 +31,7 @@ export default function records() {
                     <Text w="20" variant="textRight"> 3:00 pm </Text>
                     <Text w="20" variant="textRight"> Family Car </Text>
                     <Icon size={20} name="edit" style={globalStyles.rescheduleIcon}/>
-                    <Icon size={20} name="trash" style={globalStyles.rescheduleIcon}/>
+                    <Icon size={20} name="infon b" style={globalStyles.rescheduleIcon}/>
                 </HStack>
                 <Divider />
                 <HStack space={3} alignItems="center">
@@ -42,7 +42,7 @@ export default function records() {
                     <Text w="20" variant="textRight"> 3:00 pm </Text>
                     <Text w="20" variant="textRight"> Family Car </Text>
                     <Icon size={20} name="edit" style={globalStyles.rescheduleIcon}/>
-                    <Icon size={20} name="trash" style={globalStyles.rescheduleIcon}/>
+                    <Icon size={20} name="info" style={globalStyles.rescheduleIcon}/>
                 </HStack>
                 <Divider />
             </NativeBaseProvider>
