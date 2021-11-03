@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Car;
 use Illuminate\Http\Request;
+use function __;
+use function auth;
+use function response;
 
 class CarController extends Controller
 {
@@ -25,7 +29,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        return auth()->user()->cars;
+        return auth()->user()->cars()->get(['id','name','color','plate_number']);
     }
 
 
@@ -37,8 +41,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
-        return Car::create($request->all());
+        $request->validate(['name' => 'required','color'=>'required']);
+        return auth()->user()->cars()->create($request->all());
     }
 
     /**
@@ -63,7 +67,7 @@ class CarController extends Controller
     public function update(Request $request, Car $car)
     {
         $car->update($request->all());
-        return response()->json(['message' => __(":attribute updated successfully", __('car'))]);
+        return response()->json(['message' => __("updated successfully")]);
     }
 
     /**
@@ -75,6 +79,6 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
-        return response()->json(['message' => __(":attribute deleted successfully", __('car'))]);
+        return response()->json(['message' => __("deleted successfully")]);
     }
 }

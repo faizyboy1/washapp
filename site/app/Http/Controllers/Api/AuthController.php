@@ -29,7 +29,7 @@ class AuthController extends Controller
         ]);
         $this->generateOtp($user);
 
-        return true;
+        return response()->json(['message'=>__('Registration were successful')]);
 //        return $this->verify();
 //        return [
 //            'token' => $user->createToken('tokens')->plainTextToken
@@ -46,7 +46,7 @@ class AuthController extends Controller
 
     public function verify(Request $request)
     {
-        $this->validate($request,['code' => 'digits:4|required', 'phone' => 'required']);
+        $request->validate(['code' => 'digits:4|required', 'phone' => 'required']);
 
         $isMatched = Otp::check($request->input('code'), $request->input('phone'));
 //dd($request->input(),$isMatched);

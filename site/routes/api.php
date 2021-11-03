@@ -25,18 +25,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 
     // cars
-    Route::get('cars', [\App\Http\Controllers\CarController::class, 'index']);
-    Route::post('cars', [\App\Http\Controllers\CarController::class, 'store']);
-    Route::get('cars/{car}', [\App\Http\Controllers\CarController::class, 'show']);
-    Route::patch('cars/{car}', [\App\Http\Controllers\CarController::class, 'update']);
-    Route::delete('cars/{car}', [\App\Http\Controllers\CarController::class, 'destroy']);
+    Route::get('cars', [\App\Http\Controllers\Api\CarController::class, 'index']);
+    Route::post('cars', [\App\Http\Controllers\Api\CarController::class, 'store']);
+    Route::get('cars/{car}', [\App\Http\Controllers\Api\CarController::class, 'show']);
+    Route::patch('cars/{car}', [\App\Http\Controllers\Api\CarController::class, 'update']);
+    Route::delete('cars/{car}', [\App\Http\Controllers\Api\CarController::class, 'destroy']);
 
     //addresses
-    Route::get('addresses', [\App\Http\Controllers\AddressController::class, 'index']);
-    Route::post('addresses', [\App\Http\Controllers\AddressController::class, 'store']);
-    Route::get('addresses/{address}', [\App\Http\Controllers\AddressController::class, 'show']);
-    Route::patch('addresses/{address}', [\App\Http\Controllers\AddressController::class, 'update']);
-    Route::delete('addresses/{address}', [\App\Http\Controllers\AddressController::class, 'destroy']);
+    Route::get('addresses', [\App\Http\Controllers\Api\AddressController::class, 'index']);
+    Route::post('addresses', [\App\Http\Controllers\Api\AddressController::class, 'store']);
+    Route::get('addresses/{address}', [\App\Http\Controllers\Api\AddressController::class, 'show']);
+    Route::patch('addresses/{address}', [\App\Http\Controllers\Api\AddressController::class, 'update']);
+    Route::delete('addresses/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
 
 
     Route::get('/user', function (Request $request) {

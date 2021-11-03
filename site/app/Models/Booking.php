@@ -21,4 +21,9 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class,'client_id');
     }
+
+    public function payment_method()
+    {
+        return $this->belongsTo(PaymentMethod::class);
+    }
 }

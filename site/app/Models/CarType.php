@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @mixin IdeHelperPaymentType
  */
-class PaymentType extends Model
+class CarType extends Model
 {
     use HasFactory;
+
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
 }

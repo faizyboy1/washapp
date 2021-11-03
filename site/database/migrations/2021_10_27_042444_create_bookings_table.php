@@ -18,9 +18,9 @@ class CreateBookingsTable extends Migration
             $table->foreignIdFor(\App\Models\User::class,'client_id');
             $table->foreignIdFor(\App\Models\User::class,'washer_id');
             $table->foreignIdFor(\App\Models\Address::class);
-            $table->set('car_type',['family','small']);
-            $table->set('payment_method',['cash','card']);
-            $table->set('status',['posted','completed','cancelled'])->nullable();
+            $table->enum('car_type',['FAMILY','SEDAN']);
+            $table->enum('payment_method',['CASH','CARD']);
+            $table->enum('status',['POSTED','COMPLETED','CANCELLED'])->nullable();
             $table->float('amount');
             $table->text('note')->nullable();
             $table->timestamps();

@@ -12,8 +12,16 @@ class Car extends Model
 {
     use HasFactory;
 
-    public function user()
+    protected $fillable = ['id','name','color','plate_number'];
+    public function owner()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(CarType::class);
+    }
+
+
 }

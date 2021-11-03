@@ -86,4 +86,20 @@ class User extends Authenticatable
         return $this->addresses->contains($address);
     }
 
+    public function getIsAdminAttribute()
+    {
+        return $this->role ==2;
+    }
+
+    public function getIsWasherAttribute()
+    {
+        return $this->role ==1;
+    }
+
+    public function getIsClientAttribute()
+    {
+        return $this->role ==1;
+    }
+
+
 }

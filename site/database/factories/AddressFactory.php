@@ -13,8 +13,11 @@ class AddressFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            //
+            'name'=>$this->faker->words(3,true),
+            'latitude'=>$this->faker->latitude,
+            'longitude'=>$this->faker->longitude
         ];
     }
 }

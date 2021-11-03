@@ -18,7 +18,7 @@ class CarPolicy
      */
     public function viewAny(User $user)
     {
-
+        return $user->is_verified;
     }
 
     /**
@@ -30,7 +30,7 @@ class CarPolicy
      */
     public function view(User $user, Car $car)
     {
-        $user->is_verified &&  $user->ownsCar($car);
+      return  $user->is_verified &&  $user->ownsCar($car);
     }
 
     /**
@@ -53,7 +53,7 @@ class CarPolicy
      */
     public function update(User $user, Car $car)
     {
-        $user->is_verified &&  $user->ownsCar($car);
+       return $user->is_verified &&  $user->ownsCar($car);
     }
 
     /**
@@ -65,7 +65,7 @@ class CarPolicy
      */
     public function delete(User $user, Car $car)
     {
-        $user->is_verified &&  $user->ownsCar($car);
+      return  $user->is_verified &&  $user->ownsCar($car);
     }
 
 }
