@@ -1,8 +1,6 @@
 import React from 'react';
-import {Divider} from "native-base";
+import {Divider} from 'native-base';
 
 export default function divider() {
-    return (
-        <Divider my={3} bg="#ccfbf1" />
-    );
+  return <Divider my={3} bg="#ccfbf1" />;
 }
