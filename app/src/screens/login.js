@@ -16,50 +16,47 @@ import {globalStyles} from '../styling/global-styling';
 import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import axios from 'axios';
+import MMKVStorage, { useMMKVStorage } from "react-native-mmkv-storage";
 
 const logoImage = require('../assets/logo.png');
 
 export default function login({navigation}) {
 
-    const [cars, setCars] = useState([]);
-    const [token, setToken] = useState(null);
+    //token: 6|G2RVoGmeeeOQIsFcwLrO1KHknhh-OTP3q06FCuqqc
+    //const [cars, setCars] = useState([]);
+    const storage = new MMKVStorage.Loader().withEncryption().initialize();
 
+    const MMKV = new MMKVStorage.Loader().initialize();
 
-    const carCard = (car) => {
-        return (
-        <View>
-            <Text>{car.name}</Text>
-            <Text>{car.plate_number}</Text>
-            <Text>{car.color}</Text>
-        </View>
-        )
-    }
+    const [token, setToken] = useMMKVStorage("token", MMKV, '6|G2RVoGmeeeOQIsFcwLrO1KHknhh-OTP3q06FCuqqc'); // robert is the default value
+    // const carCard = (car) => {
+    //     return (
+    //     <View>
+    //         <Text>{car.name}</Text>
+    //         <Text>{car.plate_number}</Text>
+    //         <Text>{car.color}</Text>
+    //     </View>
+    //     )
+    // };
 
-
-
-    const createCar = (token) => {
-        axios.post('https://wash.cm.codes/api/cars',
-            {
-                'name': 'Changan CS75 2022',
-                'color': 'black',
-                'plate_number': 'ABCD 6545',
-            },
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            }).then(response => console.log('new car', response));
-
-    }
+    // const createCar = (token) => {
+    //     axios.post('https://wash.cm.codes/api/cars',
+    //         {
+    //             'name': 'Changan CS75 2022',
+    //             'color': 'black',
+    //             'plate_number': 'ABCD 6545',
+    //         },
+    //         {
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${token}`,
+    //             },
+    //         }).then(response => console.log('new car', response));
+    //
+    // };
 
     const login = () => {
-
-
-
-
-
             axios.post('https://wash.cm.codes/api/login', {
                 'phone': `966${phone}`, //535010102 //@todo needs to validate phone not contained
                 'password': password, //12345678
@@ -68,23 +65,32 @@ export default function login({navigation}) {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-            }).then(response =>  carsList(response.data.token)).catch(error => console.log(error)); //setCars(response.data)
+            }).then(response => {
+                setToken(response.data.token);
+                Toast.show({
+                    text: 'LoginSuccessfully',
+                    type: 'success',
+                    duration: 6000,
+                    navigate: navigation.navigate('Drawer', {userToken: token}),
+                    textStyle: {
+                        paddingTop:1,
+                        paddingBottom:1,
+                        lineHeight:20
+                    }
+                });
+                //carsList(response.data.token)
+            }).catch(error => console.log(error)); //setCars(response.data)
 
-
-        }
-    const carsList = (token) => {
-
-
-
-        console.log('receiving token:' + token);
-
-            axios.get('https://wash.cm.codes/api/cars', {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            }).then(response => (setCars(response.data) )).catch(error=>console.log(error)); //setCars(response.data)
+        };
+    // const carsList = (token) => {
+    //     console.log('receiving token:' + token);
+    //         axios.get('https://wash.cm.codes/api/cars', {
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${token}`,
+    //             },
+    //         }).then(response => (setCars(response.data) )).catch(error=>console.log(error)); //setCars(response.data)
 
 // return;
 
@@ -140,15 +146,13 @@ export default function login({navigation}) {
             //             //textStyle: styles.f
             //         });
             //     });
-        }
-    ;
+    //     }
+    // ;
 
     const [show, setShow] = useState(false);
     const handleClick = () => setShow(!show);
     const [phone, setPhone] = useState(null);
-    // const handleChangePhone = () => setPhone('123456');
     const [password, setPassword] = useState(null);
-    // const handleChangePassword = () => setPassword('123456');
 
     return (
         <View style={globalStyles.loginView}>
@@ -206,9 +210,9 @@ export default function login({navigation}) {
                     </Button>
 
 
-                    <View>
-                        {cars.map(car =>carCard(car))}
-                    </View>
+                    {/*<View>*/}
+                        {/*{cars.map(car =>carCard(car))}*/}
+                    {/*</View>*/}
                 </Box>
             </NativeBaseProvider>
         </View>

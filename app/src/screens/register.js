@@ -21,48 +21,50 @@ const logoImage = require('../assets/logo.png');
 
 export default function register({navigation}) {
     const [show, setShow] = React.useState(false);
+    const handleClick = () => setShow(!show);
+
+    const [showC, setShowC] = React.useState(false);
+    const handleClickC = () => setShowC(!showC);
+
     // {
     //   "name":"Saleh",
     //     "phone":"96653501202",
     //     "password":"12345678",
     //     "password_confirmation":"12345678"
     // }
+
     const [name, setName] = useState(null);
     const [phone, setPhone] = useState(null);
     const [password, setPassword] = useState(null);
     const [passwordConfirmation, setPasswordConfirmation] = useState(null);
 
-  const register = () => {
+    const register = () => {
 
+        let data = {
+            'name': name, //Saleh
+            'phone': `966${phone}`, //535010102 //@todo needs to validate phone not contained
+            'password': password, //12345678
+            'password_confirmation': passwordConfirmation, //12345678
+        };
 
-let data = {
-  'name': name, //535010102 //@todo needs to validate phone not contained
-  'phone': `966${phone}`, //535010102 //@todo needs to validate phone not contained
-  'password': password, //12345678
-  'password_confirmation': passwordConfirmation, //12345678
-}
-console.log(data);
+        //console.log(data);
 
+        axios.post('https://wash.cm.codes/api/register', {
+            'name': name, //535010111 //@todo needs to validate phone not contained
+            'phone': `966${phone}`, //535010102 //@todo needs to validate phone not contained
+            'password': password, //12345678
+            'password_confirmation': passwordConfirmation, //12345678
+        }, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => console.log(response.data))
+            .catch(error => console.log(error)); //setCars(response.data)
 
-    axios.post('https://wash.cm.codes/api/register', {
-      'name': name, //535010102 //@todo needs to validate phone not contained
-      'phone': `966${phone}`, //535010102 //@todo needs to validate phone not contained
-      'password': password, //12345678
-      'password_confirmation': passwordConfirmation, //12345678
-    }, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(response =>  console.log(response.data)).catch(error => console.log(error)); //setCars(response.data)
+    };
 
-
-  }
-
-    const handleClick = () => setShow(!show);
-
-    const [showC, setShowC] = React.useState(false);
-    const handleClickC = () => setShowC(!showC);
     return (
         <View style={globalStyles.loginView}>
             <NativeBaseProvider>

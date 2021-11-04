@@ -12,22 +12,22 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Divider from '../components/divider';
 
 export default function records() {
-  const theme = extendTheme({
-    components: {
-      Text: {
-        baseStyle: {},
-        defaultProps: {},
-        variants: {
-          textRight: () => {
-            return {
-              textAlign: 'right',
-            };
-          },
-          sizes: {},
-        },
-      },
-    },
-  });
+  // const theme = extendTheme({
+  //   components: {
+  //     Text: {
+  //       baseStyle: {},
+  //       defaultProps: {},
+  //       variants: {
+  //         textRight: () => {
+  //           return {
+  //             textAlign: 'right',
+  //           };
+  //         },
+  //         sizes: {},
+  //       },
+  //     },
+  //   },
+  // });
   return (
     <View style={globalStyles.termsHeader}>
       <NativeBaseProvider theme={theme}>
@@ -45,7 +45,7 @@ export default function records() {
             Family Car{' '}
           </Text>
           <Icon size={20} name="edit" style={globalStyles.rescheduleIcon} />
-          <Icon size={20} name="infon b" style={globalStyles.rescheduleIcon} />
+          <Icon size={20} name="info" style={globalStyles.rescheduleIcon} />
         </HStack>
         <Divider />
         <HStack space={3} alignItems="center">

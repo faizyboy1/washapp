@@ -15,8 +15,9 @@ import Cars from '../screens/cars';
 import TellFriend from '../screens/tell-friend';
 import Records from '../stacks/tabs';
 
-export default function DrawerNavigator({navigation, t}) {
-  const Drawer = createDrawerNavigator();
+export default function DrawerNavigator({navigation}) {
+
+    const Drawer = createDrawerNavigator();
 
   const screenOptionStyle = {
     headerTintColor: 'white',
