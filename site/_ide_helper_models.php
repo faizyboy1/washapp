@@ -14,10 +14,12 @@ namespace App\Models{
 /**
  * App\Models\Address
  *
+ * @mixin IdeHelperAddress
  * @property int $id
- * @property int $user_id
  * @property string|null $name
- * @property string $address
+ * @property int $user_id
+ * @property string|null $latitude
+ * @property string|null $longitude
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $user
@@ -25,13 +27,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Address newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Address newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Address query()
- * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereUserId($value)
- * @mixin \Eloquent
  */
 	class IdeHelperAddress extends \Eloquent {}
 }
@@ -40,18 +42,20 @@ namespace App\Models{
 /**
  * App\Models\Booking
  *
+ * @mixin IdeHelperBooking
  * @property int $id
  * @property int $client_id
  * @property int $washer_id
  * @property int $address_id
- * @property mixed $car_type
- * @property mixed $payment_method
- * @property mixed|null $status
+ * @property string $car_type
+ * @property \App\Models\PaymentMethod $payment_method
+ * @property \App\Models\BookingStatus $status
  * @property float $amount
  * @property string|null $note
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $client
+ * @property-read \App\Models\Slot $slot
  * @property-read \App\Models\User $washer
  * @method static \Database\Factories\BookingFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking newModelQuery()
@@ -68,86 +72,150 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereWasherId($value)
- * @mixin \Eloquent
  */
 	class IdeHelperBooking extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
+ * App\Models\BookingStatus
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
+ * @property-read int|null $bookings_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus query()
+ * @mixin \Eloquent
+ */
+	class IdeHelperBookingStatus extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Car
  *
+ * @mixin IdeHelperCar
  * @property int $id
+ * @property string $name
+ * @property string $color
+ * @property string|null $plate_number
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User $user
+ * @property-read \App\Models\User $owner
+ * @property-read \App\Models\CarType $type
  * @method static \Database\Factories\CarFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Car newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Car newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Car query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car wherePlateNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereUserId($value)
- * @mixin \Eloquent
  */
 	class IdeHelperCar extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Membership
+ * App\Models\CarType
  *
+ * @mixin IdeHelperPaymentType
  * @property int $id
- * @property int $team_id
- * @property int $user_id
- * @property string|null $role
+ * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Car[] $cars
+ * @property-read int|null $cars_count
+ * @method static \Illuminate\Database\Eloquent\Builder|CarType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CarType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CarType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CarType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CarType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CarType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CarType whereUpdatedAt($value)
+ */
+	class IdeHelperCarType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Membership
+ *
+ * @mixin IdeHelperMembership
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership query()
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereRole($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUserId($value)
- * @mixin \Eloquent
  */
 	class IdeHelperMembership extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\PaymentType
+ * App\Models\PaymentMethod
  *
- * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Database\Factories\PaymentTypeFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentType newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentType newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentType query()
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentType whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentType whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentType whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
+ * @property-read int|null $bookings_count
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod query()
  * @mixin \Eloquent
  */
-	class IdeHelperPaymentType extends \Eloquent {}
+	class IdeHelperPaymentMethod extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Service
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
+ * @property-read int|null $bookings_count
+ * @method static \Database\Factories\ServiceFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Service newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Service newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Service query()
+ * @mixin \Eloquent
+ */
+	class IdeHelperService extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Setting
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
+ * @mixin \Eloquent
+ */
+	class IdeHelperSetting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Slot
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
+ * @property-read int|null $bookings_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $vacancies
+ * @property-read int|null $vacancies_count
+ * @method static \Database\Factories\SlotFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot query()
+ * @mixin \Eloquent
+ */
+	class IdeHelperSlot extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * App\Models\Team
  *
- * @property int $id
- * @property int $user_id
- * @property string $name
- * @property bool $personal_team
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @mixin IdeHelperTeam
  * @property-read \App\Models\User $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\TeamInvitation[] $teamInvitations
  * @property-read int|null $team_invitations_count
@@ -157,13 +225,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Team newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team query()
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team wherePersonalTeam($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserId($value)
- * @mixin \Eloquent
  */
 	class IdeHelperTeam extends \Eloquent {}
 }
@@ -172,23 +233,11 @@ namespace App\Models{
 /**
  * App\Models\TeamInvitation
  *
- * @property int $id
- * @property int $team_id
- * @property string $email
- * @property string|null $role
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @mixin IdeHelperTeamInvitation
  * @property-read \App\Models\Team $team
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation query()
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereRole($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 	class IdeHelperTeamInvitation extends \Eloquent {}
 }
@@ -199,45 +248,40 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property string $email
- * @property string $phone
- * @property string|null $fcm_token
+ * @property string|null $phone
+ * @property int $is_verified
+ * @property int $role
+ * @property string|null $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property string|null $remember_token
- * @property int|null $current_team_id
  * @property string|null $profile_photo_path
- * @property mixed $role
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
  * @property-read int|null $addresses_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
- * @property-read int|null $bookings_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Car[] $cars
  * @property-read int|null $cars_count
- * @property-read \App\Models\Team|null $currentTeam
+ * @property-read mixed $is_admin
+ * @property-read mixed $is_client
+ * @property-read mixed $is_washer
  * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $ownedTeams
- * @property-read int|null $owned_teams_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $teams
- * @property-read int|null $teams_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User ofType($type)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereFcmToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsVerified($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
@@ -250,5 +294,18 @@ namespace App\Models{
  * @mixin \Eloquent
  */
 	class IdeHelperUser extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Vacancy
+ *
+ * @method static \Database\Factories\VacancyFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy query()
+ * @mixin \Eloquent
+ */
+	class IdeHelperVacancy extends \Eloquent {}
 }
 

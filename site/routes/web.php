@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\UserTable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('users',UserTable::class)->name('users');
 Route::resource('notifications', \App\Http\Controllers\NotificationController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

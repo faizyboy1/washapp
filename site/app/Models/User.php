@@ -11,6 +11,9 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -61,6 +64,12 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public const ROLES = [
+        'client'    => 0,
+        'washer'    => 1,
+        'admin'     => 2,
+    ];
+
     public function username()
     {
         return 'phone';
@@ -86,19 +95,40 @@ class User extends Authenticatable
         return $this->addresses->contains($address);
     }
 
+    public function scopeOfType($query,$type)
+    {
+
+        return $query->where('role_id',self::ROLES[$type]);
+    }
+//
+//    public function getIsAttribute()
+//    {
+//
+//    }
+
     public function getIsAdminAttribute()
     {
-        return $this->role ==2;
+        return $this->role_id ==self::ROLES['admin'];
     }
 
     public function getIsWasherAttribute()
     {
-        return $this->role ==1;
+        return $this->role_id ==self::ROLES['washer'];
     }
 
     public function getIsClientAttribute()
     {
-        return $this->role ==1;
+        return $this->role_id ==self::ROLES['client'];
+    }
+
+    public function washer_bookings()
+    {
+        return $this->hasMany(Booking::class,'washer_id');
+    }
+
+    public function client_bookings()
+    {
+        return $this->hasMany(Booking::class,'client_id');
     }
 
 

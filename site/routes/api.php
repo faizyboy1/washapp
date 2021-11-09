@@ -38,9 +38,22 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('addresses/{address}', [\App\Http\Controllers\Api\AddressController::class, 'update']);
     Route::delete('addresses/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
 
+    Route::get('sync/{version}', function () {
+        return true;
+    });
 
     Route::get('/user', function (Request $request) {
-        return $request->user();
+
+        $user = auth()->user()->load('bookings', 'cars', 'addresses');
+        $booking = $user->isWasher ? $user->washer_bookings : $user->washer_bookings;
+        return
+            [
+                'user' => $request->user(),
+                'is_washer' => $user->isWasher,
+                'bookings' => $booking,
+                'cars' => $user->cars,
+                'addresses' => $user->addresses
+            ];
     });
 });
 

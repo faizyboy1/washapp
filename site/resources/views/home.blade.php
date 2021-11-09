@@ -82,6 +82,4 @@
 
     </div>
 
-
-
 </x-guest-layout>

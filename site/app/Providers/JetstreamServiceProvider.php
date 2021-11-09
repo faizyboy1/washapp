@@ -48,12 +48,12 @@ class JetstreamServiceProvider extends ServiceProvider
 //                'server:delete',
 //            ])->description('Administrator users can perform any action.');
 
-        Jetstream::permissions([
-            'create',
-            'read',
-            'update',
-            'delete',
-        ]);
+//        Jetstream::permissions([
+//            'create',
+//            'read',
+//            'update',
+//            'delete',
+//        ]);
     }
 //
 //    private function adminPermissions()

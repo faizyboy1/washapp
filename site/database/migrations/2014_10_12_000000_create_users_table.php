@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->boolean('is_verified')->default(false);
 //            $table->string('fcm_token')->nullable();
-            $table->integer('role')->default(0);
+            $table->integer('role_id')->default(0);
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
