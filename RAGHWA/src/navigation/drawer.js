@@ -1,21 +1,25 @@
 import React from 'react';
-import {TouchableOpacity, I18nManager} from 'react-native';
-import {
-    createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
-    DrawerItem,
-} from '@react-navigation/drawer';
+import {I18nManager} from 'react-native';
+import {createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList,} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import i18n from '../lang/index';
 
 import Home from '../screens/home';
 import Terms from '../screens/terms';
-import Cars from '../screens/cars';
+import Cars from '../screens/cars/index';
 import TellFriend from '../screens/tell-friend';
-import Records from '../stacks/tabs';
+import Records from './tabs';
+import authRequest from '../components/axios/auth-request';
+import MMKVStorage from 'react-native-mmkv-storage';
 
 export default function DrawerNavigator({navigation}) {
+    const logout = () => {
+        authRequest.post('logout'); //@todo refresh the app/redirect to login?
+        const MMKV = new MMKVStorage.Loader().initialize(); // Returns an MMKV Instance
+        MMKV.removeItem('token');
+        return navigation.navigate('Login')
+
+    };
 
     const Drawer = createDrawerNavigator();
 
@@ -32,7 +36,7 @@ export default function DrawerNavigator({navigation}) {
         title: i18n.t('homeTitle'),
         drawerLabel: i18n.t('homeTitle'),
         drawerIcon: ({focused}) => (
-            <Icon name="home" size={20} color={focused ? '#14b8a6' : 'grey'} />
+            <Icon name="home" size={20} color={focused ? '#14b8a6' : 'grey'}/>
         ),
     };
 
@@ -40,7 +44,7 @@ export default function DrawerNavigator({navigation}) {
         title: i18n.t('recordsTitle'),
         drawerLabel: i18n.t('recordsTitle'),
         drawerIcon: ({focused}) => (
-            <Icon name="file-alt" size={25} color={focused ? '#14b8a6' : 'grey'} />
+            <Icon name="file-alt" size={25} color={focused ? '#14b8a6' : 'grey'}/>
         ),
     };
 
@@ -48,7 +52,7 @@ export default function DrawerNavigator({navigation}) {
         title: i18n.t('carsTitle'),
         drawerLabel: i18n.t('carsTitle'),
         drawerIcon: ({focused}) => (
-            <Icon name="car" size={20} color={focused ? '#14b8a6' : 'grey'} />
+            <Icon name="car" size={20} color={focused ? '#14b8a6' : 'grey'}/>
         ),
         // headerRight: () => (
         //     <TouchableOpacity
@@ -63,7 +67,7 @@ export default function DrawerNavigator({navigation}) {
         title: i18n.t('tellFriendTitle'),
         drawerLabel: i18n.t('tellFriendTitle'),
         drawerIcon: ({focused}) => (
-            <Icon name="share" size={20} color={focused ? '#14b8a6' : 'grey'} />
+            <Icon name="share" size={20} color={focused ? '#14b8a6' : 'grey'}/>
         ),
     };
 
@@ -111,16 +115,28 @@ export default function DrawerNavigator({navigation}) {
                                 />
                             )}
                         />
+
+                        <DrawerItem
+                            label={i18n.t('logout')}
+                            onPress={() => logout()}
+                            icon={({focused}) => (
+                                <Icon
+                                    size={25}
+                                    name={'user'}
+                                    color={focused ? '#14b8a6' : 'grey'}
+                                />
+                            )}
+                        />
                     </DrawerContentScrollView>
                 );
             }}>
-            <Drawer.Screen name="Home" component={Home} options={HomeOptions} />
+            <Drawer.Screen name="Home" component={Home} options={HomeOptions}/>
             <Drawer.Screen
                 name="Records"
                 component={Records}
                 options={RecordsOptions}
             />
-            <Drawer.Screen name="Cars" component={Cars} options={CarsOptions} />
+            <Drawer.Screen name="Cars" component={Cars} options={CarsOptions}/>
             <Drawer.Screen
                 name="TellFriend"
                 component={TellFriend}
