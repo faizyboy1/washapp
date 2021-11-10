@@ -49,7 +49,7 @@ export default function home({navigation}) {
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
             ).then(granted => {
                 if (granted && this.mounted) {
-                    this.watchLocation();
+                    watchLocation();
                 }
             });
         } else {
@@ -68,7 +68,7 @@ export default function home({navigation}) {
                 }
             },
             null,
-            geolocationOptions
+            GEOLOCATION_OPTIONS
         );
     }
 

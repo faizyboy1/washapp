@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+
 
 /**
  * @mixin IdeHelperUser
@@ -31,7 +33,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'role_id'
     ];
 
     /**
@@ -121,12 +124,12 @@ class User extends Authenticatable
         return $this->role_id ==self::ROLES['client'];
     }
 
-    public function washer_bookings()
+    public function washerBookings()
     {
         return $this->hasMany(Booking::class,'washer_id');
     }
 
-    public function client_bookings()
+    public function clientBookings()
     {
         return $this->hasMany(Booking::class,'client_id');
     }

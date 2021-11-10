@@ -13,7 +13,7 @@ class Booking extends Model
     use HasFactory;
 
 
-    protected $fillable = ['client_id', 'washer_id', 'address_id', 'payment_method_id', 'car_type_id', 'booking_status_id', 'booking_date', 'amount', 'total_amount', 'note'];
+    protected $fillable = ['client_id', 'washer_id', 'address_id', 'payment_method_id', 'car_type_id', 'booking_status_id', 'booking_date', 'amount', 'vat','total_amount', 'note'];
 
     protected $dates = ['booking_date'];
 
@@ -46,10 +46,10 @@ class Booking extends Model
 
     public function calculateAmounts()
     {
-        $this->total = $this->services()->sum('price');
-        $this->vat = $this->total * 0.15;
+        $this->amount = $this->services()->sum('price');
+        $this->vat = $this->amount * 0.15;
         $this->total_amount = $this->amount + $this->vat;
-
+        return $this;
     }
 
     public function services()
