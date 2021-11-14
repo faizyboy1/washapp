@@ -12,6 +12,9 @@ class Service extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','price'];
+    protected $visible = ['id','name', 'price'];
+
     public function bookings()
     {
         return $this->belongsToMany(Booking::class);

@@ -16,7 +16,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        return auth()->user()->bookings;
     }
 
     /**
@@ -55,7 +55,7 @@ class BookingController extends Controller
         $booking->calculateAmounts();
         $booking->save();
 
-        return $booking;
+        return $booking->load('services');
     }
 
     /**
@@ -66,7 +66,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        return $booking->load('services');
     }
 
     /**
@@ -89,7 +89,12 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        // validate the user gate
+        // validate the new date
+        // release the old slot
+
+        $booking->update($request->all());
+        return $booking->load('services');
     }
 
     /**
@@ -100,14 +105,19 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        $booking->services()->delete();
+        $booking->delete();
+        return response()->json(['message'=>'deleted successfully']);
     }
 
-    public function reschedule(Booking $booking)
+    public function reschedule(Request $request, Booking $booking)
     {
         // validate the user gate
         // validate the new date
         // release the old slot
+
+        $booking->update($request->all());
+        return $booking->load('services');
 
     }
 

@@ -14,17 +14,20 @@ class SlotSeeder extends Seeder
     public function run()
     {
         \DB::table('slots')->insert([
-            ['name'=>'08:00 AM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'09:15 AM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'10:30 AM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'01:00 PM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'02:15 PM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'3:30 PM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'4:15 PM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'5:30 PM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'7:00 PM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'8:15 PM','created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'9:30 PM','created_at'=>now(),'updated_at'=>now()],
+//            ['name'=>'08:00 AM','created_at'=>now(),'updated_at'=>now()],
+        //todo 09:00 - 10:00 PM
+            ['name'=>'09:00 AM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'10:15 AM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'11:30 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'12:45 PM','created_at'=>now(),'updated_at'=>now()],
+//            ['name'=>'02:00 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'02:00 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'03:15 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'04:30 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'05:45 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'07:00 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'08:15 PM','created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'09:30 PM','created_at'=>now(),'updated_at'=>now()],
         ]);
     }
 }
