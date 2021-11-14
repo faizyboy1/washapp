@@ -79,8 +79,17 @@ class AuthController extends Controller
             return response()->json(['message'=>'Credentials not match'], 401);
         }
 
-
-        return ['token' => auth()->user()->createToken('mobileApp')->plainTextToken];
+        $user = auth()->user()->load( 'cars', 'addresses');
+        $booking = $user->isWasher ? $user->load('washerBookings') : $user->load('clientBookings');
+        $userData =
+            [
+                'user' => $request->user(),
+                'is_washer' => $user->isWasher,
+                'bookings' => $booking,
+                'cars' => $user->cars,
+                'addresses' => $user->addresses
+            ];
+        return ['token' => auth()->user()->createToken('mobileApp')->plainTextToken,'user'=>$userData];
 
     }
 
