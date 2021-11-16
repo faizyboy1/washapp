@@ -47,15 +47,22 @@ namespace App\Models{
  * @property int $client_id
  * @property int $washer_id
  * @property int $address_id
- * @property string $car_type
- * @property \App\Models\PaymentMethod $payment_method
- * @property \App\Models\BookingStatus $status
+ * @property int $payment_method_id
+ * @property int $car_type_id
+ * @property int $booking_status_id
+ * @property \Illuminate\Support\Carbon $booking_date
  * @property float $amount
+ * @property float $vat
+ * @property float $total_amount
  * @property string|null $note
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $client
+ * @property-read \App\Models\PaymentMethod $payment_method
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Service[] $services
+ * @property-read int|null $services_count
  * @property-read \App\Models\Slot $slot
+ * @property-read \App\Models\BookingStatus $status
  * @property-read \App\Models\User $washer
  * @method static \Database\Factories\BookingFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking newModelQuery()
@@ -63,14 +70,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking query()
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCarType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereBookingDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereBookingStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCarTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereClientId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereNote($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentMethod($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Booking whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentMethodId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereTotalAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereVat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereWasherId($value)
  */
 	class IdeHelperBooking extends \Eloquent {}
@@ -80,12 +90,20 @@ namespace App\Models{
 /**
  * App\Models\BookingStatus
  *
+ * @mixin IdeHelperBookingStatus
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
  * @property-read int|null $bookings_count
  * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus query()
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingStatus whereUpdatedAt($value)
  */
 	class IdeHelperBookingStatus extends \Eloquent {}
 }
@@ -123,7 +141,7 @@ namespace App\Models{
 /**
  * App\Models\CarType
  *
- * @mixin IdeHelperPaymentType
+ * @mixin IdeHelperCarType
  * @property int $id
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -157,12 +175,20 @@ namespace App\Models{
 /**
  * App\Models\PaymentMethod
  *
+ * @mixin IdeHelperPaymentMethod
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
  * @property-read int|null $bookings_count
  * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod query()
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PaymentMethod whereUpdatedAt($value)
  */
 	class IdeHelperPaymentMethod extends \Eloquent {}
 }
@@ -171,13 +197,22 @@ namespace App\Models{
 /**
  * App\Models\Service
  *
+ * @mixin IdeHelperService
+ * @property int $id
+ * @property string $name
+ * @property float $price
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
  * @property-read int|null $bookings_count
- * @method static \Database\Factories\ServiceFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Service newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Service newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Service query()
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|Service whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Service whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Service whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Service wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Service whereUpdatedAt($value)
  */
 	class IdeHelperService extends \Eloquent {}
 }
@@ -186,10 +221,16 @@ namespace App\Models{
 /**
  * App\Models\Setting
  *
+ * @mixin IdeHelperSetting
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
  */
 	class IdeHelperSetting extends \Eloquent {}
 }
@@ -198,6 +239,11 @@ namespace App\Models{
 /**
  * App\Models\Slot
  *
+ * @mixin IdeHelperSlot
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
  * @property-read int|null $bookings_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $vacancies
@@ -206,7 +252,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Slot newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Slot newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Slot query()
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot whereUpdatedAt($value)
  */
 	class IdeHelperSlot extends \Eloquent {}
 }
@@ -246,11 +295,12 @@ namespace App\Models{
 /**
  * App\Models\User
  *
+ * @mixin IdeHelperUser
  * @property int $id
  * @property string $name
  * @property string|null $phone
  * @property int $is_verified
- * @property int $role
+ * @property int $role_id
  * @property string|null $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
@@ -264,6 +314,8 @@ namespace App\Models{
  * @property-read int|null $addresses_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Car[] $cars
  * @property-read int|null $cars_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $clientBookings
+ * @property-read int|null $client_bookings_count
  * @property-read mixed $is_admin
  * @property-read mixed $is_client
  * @property-read mixed $is_washer
@@ -272,6 +324,8 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $washerBookings
+ * @property-read int|null $washer_bookings_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -287,11 +341,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRoleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 	class IdeHelperUser extends \Eloquent {}
 }
@@ -300,11 +353,23 @@ namespace App\Models{
 /**
  * App\Models\Vacancy
  *
+ * @mixin IdeHelperVacancy
+ * @property int $id
+ * @property string $date
+ * @property int $slot_id
+ * @property int $capacity
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\VacancyFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Vacancy newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vacancy newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vacancy query()
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereCapacity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereSlotId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereUpdatedAt($value)
  */
 	class IdeHelperVacancy extends \Eloquent {}
 }

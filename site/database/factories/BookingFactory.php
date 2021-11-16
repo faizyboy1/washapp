@@ -7,6 +7,7 @@ use App\Models\BookingStatus;
 use App\Models\CarType;
 use App\Models\PaymentMethod;
 use App\Models\Service;
+use App\Models\Slot;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -36,6 +37,9 @@ class BookingFactory extends Factory
             },
             'car_type_id' => function (array $attributes) {
                 return CarType::inRandomOrder()->first()->id;
+            },
+            'slot_id' => function (array $attributes) {
+                return Slot::inRandomOrder()->first()->id;
             },
             'booking_status_id' => function (array $attributes) {
                 return BookingStatus::inRandomOrder()->first()->id;

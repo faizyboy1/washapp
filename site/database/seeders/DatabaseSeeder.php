@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             SettingSeeder::class,
             SlotSeeder::class,
-            VacancySeeder::class,
             UserSeeder::class
         ]);
 

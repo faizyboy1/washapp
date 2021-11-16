@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Slot;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -40,6 +42,10 @@ class BookingController extends Controller
     public function store(Request $request)
     {
 
+        // check if slot is avalible otherwise create a new one
+        // set the default booking cretiria
+        // booked no
+
         $booking = Booking::create([
             'washer_id' => User::ofType('washer')->inRandomOrder()->first()->id,
             'client_id' => auth()->user()->id,
@@ -47,7 +53,7 @@ class BookingController extends Controller
             'address_id' => $request->address_id,
             'payment_method_id' => $request->payment_method_id,
             'car_type_id' => $request->car_type_id,
-            'booking_status_id'=> 1 // @todo needs to be updated based on payment
+            'booking_status_id' => 1 // @todo needs to be updated based on payment
         ]);
 
         $booking->services()->attach($request->services);
@@ -107,7 +113,7 @@ class BookingController extends Controller
     {
         $booking->services()->delete();
         $booking->delete();
-        return response()->json(['message'=>'deleted successfully']);
+        return response()->json(['message' => 'deleted successfully']);
     }
 
     public function reschedule(Request $request, Booking $booking)
@@ -128,6 +134,17 @@ class BookingController extends Controller
 
     public function getStatus(Booking $booking)
     {
+
+    }
+
+    public function slots()
+    {
+
+        return    Slot::select(['name','slot_date'])->whereColumn('capacity','>','booked_slots')
+            ->whereDate('slot_date','>=',now())
+            ->whereDate('slot_date','<=',now()->addDays(7))
+            ->get()->groupBy('slot_date');
+
 
     }
 }

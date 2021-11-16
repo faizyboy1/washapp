@@ -16,6 +16,9 @@ class CreateSlotsTable extends Migration
         Schema::create('slots', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->date('slot_date');
+            $table->integer('booked_slots');
+            $table->integer('capacity')->unsigned()->default(0);
             $table->timestamps();
         });
     }

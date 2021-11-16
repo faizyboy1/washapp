@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('cars',\App\Http\Controllers\Api\CarController::class);
     Route::apiResource('addresses',\App\Http\Controllers\Api\AddressController::class);
+    Route::get('bookings/slots',[\App\Http\Controllers\Api\BookingController::class,'slots']);
     Route::apiResource('bookings',\App\Http\Controllers\Api\BookingController::class);
 
     Route::get('sync/{version}', function () {

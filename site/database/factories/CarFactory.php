@@ -18,7 +18,7 @@ class CarFactory extends Factory
         $carsName = ['Toyota Camry 2021','Mazda CX 9', 'Lexus LX 570'];
         return [
             'name'=>$this->faker->randomElement($carsName),
-            'color'=>$this->faker->colorName,
+            'color'=>$this->faker->hexColor,
             'plate_number'=>$this->faker->randomNumber(4).' '.Str::random(4)
         ];
     }

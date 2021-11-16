@@ -21,6 +21,7 @@ class CreateBookingsTable extends Migration
             $table->foreignIdFor(\App\Models\PaymentMethod::class);
             $table->foreignIdFor(\App\Models\CarType::class);
             $table->foreignIdFor(\App\Models\BookingStatus::class);
+            $table->foreignIdFor(\App\Models\Slot::class);
             $table->date('booking_date');
             $table->float('amount')->default(0);
             $table->float('vat')->default(0);

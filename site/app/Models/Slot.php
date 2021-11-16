@@ -12,13 +12,10 @@ class Slot extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slot_date', 'capacity'];
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);
-    }
-
-    public function vacancies()
-    {
-        return $this->hasMany(Vacancy::class);
     }
 }
