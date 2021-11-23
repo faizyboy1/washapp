@@ -16,7 +16,6 @@ export default () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Confirm" component={Confirm} />
-
     </Stack.Navigator>
   );
 };

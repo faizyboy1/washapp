@@ -1,218 +1,102 @@
-// import React from 'react';
-// import {Text, View} from 'react-native';
-// import {globalStyles} from '../../assets/style/global-styling';
-// //import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-// import {useTranslation} from 'react-i18next';
-// import MMKVStorage from 'react-native-mmkv-storage';
-//
-// export default function home({navigation}) {
-//   const MMKV = new MMKVStorage.Loader().initialize();
-//   const token = MMKV.getString('token');
-//   const {t} = useTranslation();
-//
-//   return (
-//     <View style={globalStyles.loginView}>
-//       <Text
-//         style={{textAlign: 'center'}}
-//         onPress={() => navigation.navigate('ConfirmAddress')}>
-//         {token}
-//       </Text>
-//       {/*<Button onPress={()=>setToken('hello')}>testing token</Button>*/}
-//     </View>
-//   );
-// }
-import React, {useEffect, useState} from 'react';
-import {View, Text, Switch, Button, Platform, PermissionsAndroid, StyleSheet} from 'react-native';
-import {globalStyles} from '../../assets/style/global-styling';
-import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import isEqual from 'lodash/isEqual';
-// import {useTranslation} from 'react-i18next';
-// import MMKVStorage, {useMMKVStorage} from 'react-native-mmkv-storage';
+import React, {useState} from 'react';
+import Map from './map/index';
+import Cars from './Cars';
+import Slots from './Slots';
+import {Button, Center, HStack, Icon, Text, Toast, View} from 'native-base';
 
+import {useTranslation} from 'react-i18next';
+import {useStorage} from '../../utils/useStorage';
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import {Alert} from 'react-native';
 
-export default function home({navigation}) {
+export default function Home({navigation}) {
+  // const {slot, renderSlotView} = Slots;
+  // return <MyLocationMapMarker/>
+  // const {car, setCar} = useContext(AppContext);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [car, setCar] = useStorage('car');
+  // const [slotDate, setSlotDate] = useState(null);
+  const [slot, setSlot] = useState('');
+  const getInitialState = () => {
+    return {
+      // region: {
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      // },
+    };
+  };
+  const [region, setRegion] = useState(getInitialState());
+  const {t} = useTranslation();
 
-    const getInitialState = ()=> {
-        return {
-            // region: {
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-            // },
-        };
+  const book = () => {
+    if (!region.latitude || !region.longitude) {
+      Alert.alert(
+        t('Missing Information'),
+        t('Please select the required location'),
+      );
+      return true;
     }
 
-    useEffect(()=>{
-        if (Platform.OS === 'android') {
-            PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-            ).then(granted => {
-                if (granted && this.mounted) {
-                    watchLocation();
-                }
-            });
-        } else {
-            watchLocation();
-        }
-    },[])
-
-
-    const  watchLocation = ()=> {
-        this.watchID = navigator.geolocation.watchPosition(
-            position => {
-                const myLastPosition = this.state.myPosition;
-                const myPosition = position.coords;
-                if (!isEqual(myPosition, myLastPosition)) {
-                    this.setState({ myPosition });
-                }
-            },
-            null,
-            GEOLOCATION_OPTIONS
-        );
+    if (!slot.name) {
+      Alert.alert(
+        t('Missing Information'),
+        t('Please select the required slot'),
+      );
+      return true;
     }
 
-    const onRegionChange= (region) =>{
-        this.setState({ region });
+    if (!car.id) {
+      Alert.alert(
+        t('Missing Information'),
+        t('Please select the required car'),
+      );
+      return true;
     }
-    const [region,setRegion]=useState(getInitialState());
-    const [myPosition,setMyPosition]= useState();
-    // return <MyLocationMapMarker/>
+    // check if the location is covered
 
-    // const {t, i18n} = useTranslation();
-    // const MMKV = new MMKVStorage.Loader().initialize();
-    // const [token, setToken] = useMMKVStorage("token", MMKV, '6|G2RVoGmeeeOQIsFcwLrO1KHknhh-OTP3q06FCuqqc');
-    return (
-        <View style={globalStyles.loginView}>
-            {console.log('hi hidsf')}
+    // checked if the car is selected
+    // checked if the slots is selected
 
-            {/*<Text>{token}</Text>*/}
-            {/*<MapView*/}
-            {/*    region={region}*/}
-            {/*    onRegionChange={(region)=> onRegionChange(region)}*/}
-            {/*/>*/}
-            <MapView style={{flex: 1}}
-                     provider={PROVIDER_GOOGLE}
-                     region={region} showsUserLocation={true}
-                // onRegionChange={(region)=>setRegion(region)}
-            >
+    navigation.navigate('Book', {car, slot, region});
+  };
 
-                <Marker
-                    anchor={ANCHOR}
-                    style={styles.mapMarker}
-                    coordinate={region}
-                >
-                    <View style={styles.container}>
-                        <View style={styles.markerHalo} />
-
-                        <View style={styles.marker}>
-                            <Text style={styles.markerText}>
-                            </Text>
-                        </View>
-                    </View>
-                </Marker>
-
-                <Marker
-                    coordinate={region}
-                    onSelect={e => console.log('onSelect', e)}
-                    onDrag={e => console.log('onDrag', e)}
-                    onDragStart={e => console.log('onDragStart', e)}
-                    onDragEnd={e => console.log('onDragEnd', e)}
-                    onPress={e => console.log('onPress', e)}
-                    draggable/>
-                {/*</Marker>*/}
-                {/*<Marker draggable*/}
-                {/*    key={45}*/}
-                {/*    coordinate={{*/}
-                {/*        latitude: 37.78825,*/}
-                {/*        longitude: -122.4324*/}
-                {/*    }}*/}
-                {/*    title={'marker.title'}*/}
-                {/*    description={'marker.description'}*/}
-                {/*    image={require('../assets/logo.png')}*/}
-                {/*        onDragEnd={(e) =>*/}
-                {/*            // setRegion({ latitude: e.nativeEvent.coordinate })*/}
-                {/*        console.log(e.nativeEvent.coordinate)*/}
-                {/*        }*/}
-                {/*/>*/}
-            </MapView>
-            <Text
-                style={{textAlign: 'center'}}
-                onPress={() => navigation.navigate('ConfirmAddress')}>
-                {/*{t('Welcome')}*/}
-            </Text>
-        </View>
-    );
+  return (
+    <>
+      <Map region={region} setRegion={setRegion} />
+      <Center bg={'#14b8a6'}>
+        <HStack
+          // bg={'transparent'}
+          space={5}
+          alignItems="center"
+          // flex={1}
+          // justifyItems="space-between"          // alignItems="space-between"
+          // mb={1}
+          // mx={2}
+        >
+          <View>
+            <Cars car={car} setCar={setCar} />
+          </View>
+          <Button
+            borderRadius="full"
+            borderWidth="2"
+            borderColor="red.700"
+            width="70"
+            height="70"
+            my={2}
+            // bg={car?.name && slot?.name ? 'red.400' : 'gray.400'}
+            bg={'red.400'}
+            // leftIcon={<Icon as={Ionicons} name="calendar" size="sm" />}
+            onPress={() => book()}>
+            <Text color="white">{t('Book Now')}</Text>
+          </Button>
+          <View>
+            <Slots slot={slot} setSlot={setSlot} />
+          </View>
+        </HStack>
+      </Center>
+      {/*<Actions navigation={navigation} />*/}
+    </>
+  );
 }
-const GEOLOCATION_OPTIONS = {
-    enableHighAccuracy: true,
-    timeout: 20000,
-    maximumAge: 1000,
-};
-const ANCHOR = { x: 0.5, y: 0.5 };
-const SIZE = 35;
-const HALO_RADIUS = 6;
-const ARROW_SIZE = 7;
-const ARROW_DISTANCE = 6;
-const HALO_SIZE = SIZE + HALO_RADIUS;
-const HEADING_BOX_SIZE = HALO_SIZE + ARROW_SIZE + ARROW_DISTANCE;
-
-const colorOfmyLocationMapMarker = 'blue';
-const styles = StyleSheet.create({
-    mapMarker: {
-        zIndex: 1000,
-    },
-    // The container is necessary to protect the markerHalo shadow from clipping
-    container: {
-        width: HEADING_BOX_SIZE,
-        height: HEADING_BOX_SIZE,
-    },
-    heading: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: HEADING_BOX_SIZE,
-        height: HEADING_BOX_SIZE,
-        alignItems: 'center',
-    },
-    headingPointer: {
-        width: 0,
-        height: 0,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderTopWidth: 0,
-        borderRightWidth: ARROW_SIZE * 0.75,
-        borderBottomWidth: ARROW_SIZE,
-        borderLeftWidth: ARROW_SIZE * 0.75,
-        borderTopColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderBottomColor: colorOfmyLocationMapMarker,
-        borderLeftColor: 'transparent',
-    },
-    markerHalo: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        top: 0,
-        left: 0,
-        width: HALO_SIZE,
-        height: HALO_SIZE,
-        borderRadius: Math.ceil(HALO_SIZE / 2),
-        margin: (HEADING_BOX_SIZE - HALO_SIZE) / 2,
-        shadowColor: 'black',
-        shadowOpacity: 0.25,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 0,
-            width: 0,
-        },
-    },
-    marker: {
-        justifyContent: 'center',
-        backgroundColor: colorOfmyLocationMapMarker,
-        width: SIZE,
-        height: SIZE,
-        borderRadius: Math.ceil(SIZE / 2),
-        margin: (HEADING_BOX_SIZE - SIZE) / 2,
-    },
-    markerText: { width: 0, height: 0 },
-});

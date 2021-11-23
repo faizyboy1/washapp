@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
                         {{ __('Users') }}
                     </x-jet-nav-link>
+                    {{--                    <x-jet-nav-link href="{{ route('bookings') }}" :active="request()->routeIs('bookings')">--}}
+                    {{--                        {{ __('Bookings') }}--}}
+                    {{--                    </x-jet-nav-link>--}}
                     <x-jet-nav-link href="{{ route('coupons') }}" :active="request()->routeIs('coupons')">
                         {{ __('Coupons') }}
                     </x-jet-nav-link>

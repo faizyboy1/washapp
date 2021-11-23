@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Terms from '../../screens/terms';
-import Drawer from '../drawer';
-import Cars from '../../screens/cars';
-import CarForm from '../../screens/cars/form';
-import Login from "../../screens/auth/login";
+import Terms from '../screens/Terms';
+import Drawer from './drawer';
+import Cars from '../screens/cars';
+import CarForm from '../screens/cars/form';
+import Login from '../screens/auth/Login';
+import Register from '../screens/auth/Register';
+import OnBoarding from '../screens/Onboarding';
+import ConfirmBooking from '../screens/bookings/confirm';
+import {AppContext} from '../utils/AppContext';
+import Book from '../screens/bookings/Create';
+import {Text, View} from 'native-base';
+import {useTranslation} from 'react-i18next';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,20 +24,98 @@ const screenOptionStyle = {
   },
 };
 
-const MainStackNavigator = () => {
+const fontStyle = {
+  fontFamily: 'Almarai-Bold',
+  // color: '#0d5e5c',
+  fontWeight: '600',
+  // fontStyle: 'normal',
+};
+
+const options = {
+  headerTitleStyle: fontStyle,
+  drawerStyle: fontStyle,
+  drawerLabelStyle: {
+    fontFamily: 'Almarai-Bold',
+    // color: '#0d5e5c',
+    fontWeight: '600',
+    // fontStyle: 'normal',
+  },
+};
+
+export default () => {
+  const {token, user, onboarding} = useContext(AppContext);
+  const {t} = useTranslation();
+  const renderScreens = () => {
+    console.log('from drawer', token);
+
+    if (!token) {
+      return (
+        <>
+          {!onboarding && (
+            <Stack.Screen
+              name="OnBoarding"
+              component={OnBoarding}
+              options={{headerShown: false}}
+            />
+          )}
+          <Stack.Screen
+            name="Login"
+            options={{...options, title: t('Login')}}
+            component={Login}
+          />
+          <Stack.Screen
+            name="Register"
+            options={{...options, title: t('Register')}}
+            component={Register}
+          />
+        </>
+      );
+    }
+
+    // return <Home />;
+    const isWasher = false; //@todo needs to be fetch from storage/api
+    if (isWasher) {
+      return (
+        <>
+          <Stack.Screen
+            name="ConfirmBooking"
+            options={{...options, title: t('Washer')}}
+            component={ConfirmBooking}
+          />
+        </>
+      );
+    }
+    return (
+      <>
+        <Stack.Screen
+          name="Drawer"
+          component={Drawer}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="CarForm" component={CarForm} />
+        <Stack.Screen
+          name="Terms and Conditions"
+          options={{...options, title: t('Terms')}}
+          component={Terms}
+        />
+        <Stack.Screen
+          name="Cars"
+          options={{...options, title: t('Cars')}}
+          component={Cars}
+        />
+        <Stack.Screen
+          name="Book"
+          options={{...options, title: t('Book')}}
+          component={Book}
+        />
+        <Stack.Screen name="Login" component={Login} />
+      </>
+    );
+  };
+
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen
-        name="Drawer"
-        component={Drawer}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen name="CarForm" component={CarForm} />
-      <Stack.Screen name="Terms and Conditions" component={Terms} />
-      <Stack.Screen name="Cars" component={Cars} />
-        <Stack.Screen name="Login" component={Login}/>
+      {renderScreens()}
     </Stack.Navigator>
   );
 };
-
-export default MainStackNavigator;

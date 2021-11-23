@@ -1,71 +1,53 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
-    Box,
-    Button,
-    Center,
-    FormControl,
-    Image,
-    Input,
-    Link,
-    NativeBaseProvider,
-    Text,
-    Toast,
-    VStack,
+  Box,
+  Button,
+  Center,
+  FormControl,
+  Image,
+  Input,
+  Link,
+  NativeBaseProvider,
+  Text,
+  useToast,
+  VStack,
 } from 'native-base';
 import {globalStyles} from '../../assets/style/global-styling';
 import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
-import MMKVStorage, {useMMKVStorage} from 'react-native-mmkv-storage';
-import request from '../../components/axios/request';
+import {AppContext} from '../../utils/AppContext';
+import {request} from '../../utils/useRequest';
+import {useTranslation} from 'react-i18next';
 
 const logoImage = require('../../assets/images/logo.png');
 
-export default function login({navigation}) {
-  const MMKV = new MMKVStorage.Loader().initialize();
-  //token: 6|G2RVoGmeeeOQIsFcwLrO1KHknhh-OTP3q06FCuqqc
-  //const [cars, setCars] = useState([]);
-  // const MMKV = new MMKVStorage.Loader().initialize();
+export default function ({navigation}) {
+  const {t} = useTranslation();
+  const {token, setToken, user, setUser} = useContext(AppContext);
+  const toast = useToast();
+  // const [loading, setLoading] = useState(false);
 
-  // const [token, setToken] = useMMKVStorage("token", MMKV, null); // robert is the default value
-  // const carCard = (car) => {
-  //     return (
-  //     <View>
-  //         <Text>{car.name}</Text>
-  //         <Text>{car.plate_number}</Text>
-  //         <Text>{car.color}</Text>
-  //     </View>
-  //     )
-  // };
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+  const [phone, setPhone] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // const createCar = (token) => {
-  //     axios.post('https://wash.cm.codes/api/cars',
-  //         {
-  //             'name': 'Changan CS75 2022',
-  //             'color': 'black',
-  //             'plate_number': 'ABCD 6545',
-  //         },
-  //         {
-  //             headers: {
-  //                 'Accept': 'application/json',
-  //                 'Content-Type': 'application/json',
-  //                 'Authorization': `Bearer ${token}`,
-  //             },
-  //         }).then(response => console.log('new car', response));
-  //
-  // };
-
-  const login = async () => {
-    request
-      .post('/login', {
+  const login = () => {
+    setLoading(true);
+    request({
+      url: '/login',
+      method: 'post',
+      data: {
         phone: `966${phone}`, //535010102 //@todo needs to validate phone not contained
-        password: password, //12345678
-        // 'phone': `966535010102`, //535010102 //@todo needs to validate phone not contained
-        // 'password': '12345678', //12345678
-      })
+        password: password,
+      },
+    })
       .then(response => {
-          MMKV.setItem('token',response.data.token)
+        setToken(response?.data?.token);
+        setUser(response.data);
 
-        Toast.show({
+        toast.show({
           text: 'LoginSuccessfully',
           type: 'success',
           duration: 6000,
@@ -76,80 +58,17 @@ export default function login({navigation}) {
             lineHeight: 20,
           },
         });
-        //carsList(response.data.token)
       })
-      .catch(error => console.log(error)); //setCars(response.data)
+      .catch(error => {
+        console.log(error.message);
+        toast.show({
+          status: 'error',
+          description: error.response?.data?.message ?? t('Error'),
+          title: t('Something went wrong'),
+        });
+      });
+    setLoading(false);
   };
-  // const carsList = (token) => {
-  //     console.log('receiving token:' + token);
-  //         axios.get('https://wash.cm.codes/api/cars', {
-  //             headers: {
-  //                 'Accept': 'application/json',
-  //                 'Content-Type': 'application/json',
-  //                 'Authorization': `Bearer ${token}`,
-  //             },
-  //         }).then(response => (setCars(response.data) )).catch(error=>console.log(error)); //setCars(response.data)
-
-  // return;
-
-  // axios
-  //     .post('https://washapp.test/api/login', {
-  //             //@todo needs to store url globally
-  //             'phone': `${phone}`,
-  //             'password': `${password}`,
-  //         },
-  //         {
-  //             headers: {
-  //                 'Accept': 'application/json',
-  //                 'Content-Type': 'application/json',
-  //             }})
-  //     .then(response => {
-  //         console.log('hi', response);
-  //         if (response.status === 200) {
-  //             let data = response.data;
-  //
-  //             global.token = data.token;
-  //             alert('success');
-  //             Toast.show({
-  //                 text: 'LoginSuccessfully',
-  //                 type: 'success',
-  //                 duration: 6000,
-  //                 navigate: navigation.navigate('Drawer'),
-  //                 //textStyle: styles.f
-  //             });
-  //         } else {
-  //             console.log('hello', response);
-  //
-  //             // this.setState({disabled: false});
-  //             // this.setState({submitButtonText: "login"});
-  //             alert('fail');
-  //             Toast.show({
-  //                 text: 'LoginFailed',
-  //                 type: 'danger',
-  //                 duration: 6000,
-  //                 //textStyle: styles.f
-  //             });
-  //         }
-  //     })
-  //     .catch(error => {
-  //         console.log(error.message);
-  //         // this.setState({disabled: false});
-  //         // this.setState({submitButtonText: i18n.t("login")});
-  //         alert(error);
-  //         Toast.show({
-  //             text: 'LoginFailed',
-  //             type: 'danger',
-  //             duration: 6000,
-  //             //textStyle: styles.f
-  //         });
-  //     });
-  //     }
-  // ;
-
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
-  const [phone, setPhone] = useState(null);
-  const [password, setPassword] = useState(null);
 
   return (
     <View style={globalStyles.loginView}>
@@ -166,10 +85,10 @@ export default function login({navigation}) {
             </Center>
             <FormControl space="3">
               <Input
-                variant="underlined"
+                // variant="underlined"
                 size="md"
-                placeholder="Phone No."
-                InputLeftElement={<Text color="grey"> +966 </Text>}
+                placeholder={t('Phone No')}
+                InputRightElement={<Text color="grey"> +966 </Text>}
                 onChangeText={value => setPhone(value)}
                 value={phone}
               />
@@ -177,14 +96,15 @@ export default function login({navigation}) {
             <FormControl space="3">
               <Input
                 type={show ? 'text' : 'password'}
-                variant="underlined"
+                // variant="underlined"
                 size="md"
-                placeholder="Password"
-                InputRightElement={
+                placeholder={t('Password')}
+                InputLeftElement={
                   <Icon
+                    style={{marginLeft: 5}}
                     onPress={handleClick}
                     name={show ? 'eye' : 'eye-slash'}
-                    color={show ? 'black' : 'grey'}
+                    color={'#258f82'}
                     size={20}
                   />
                 }
@@ -198,17 +118,16 @@ export default function login({navigation}) {
                 _text={{color: 'blue.500'}}
                 mt={-0.5}
                 onPress={() => navigation.navigate('Register')}>
-                Join Us Now
+                {t('Join Us Now')}
               </Link>{' '}
             </Text>
           </VStack>
-          <Button mt="2" onPress={() => login()}>
-            Log-in
+          <Button
+            mt="2"
+            isDisabled={!password || !phone || loading}
+            onPress={() => login()}>
+            {t('Login')}
           </Button>
-
-          {/*<View>*/}
-          {/*{cars.map(car =>carCard(car))}*/}
-          {/*</View>*/}
         </Box>
       </NativeBaseProvider>
     </View>

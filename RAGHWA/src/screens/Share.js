@@ -1,8 +1,8 @@
 import React from 'react';
-import {Share, StatusBar, Text, View} from 'react-native';
+import {Share, StatusBar, View} from 'react-native';
 import {globalStyles} from '../assets/style/global-styling';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import {Box as NBBox, Divider, HStack} from 'native-base';
+import {Box as NBBox, Divider, HStack, Text} from 'native-base';
 
 const Box = props => {
   return (
@@ -10,7 +10,7 @@ const Box = props => {
   );
 };
 
-const tellFriend = () => {
+const share = () => {
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -35,6 +35,8 @@ const tellFriend = () => {
       <Text style={globalStyles.tellSectionTitle}>
         Your Friends Deserve The best, Share our App with them!
       </Text>
+      {/*<Text fontFamily="body" fontWeight={600} fontStyle="normal">*/}
+      <Text>اخبر زملائك</Text>
       <View>
         <Divider bg="#115e59" />
       </View>
@@ -50,4 +52,4 @@ const tellFriend = () => {
   );
 };
 
-export default tellFriend;
+export default share;

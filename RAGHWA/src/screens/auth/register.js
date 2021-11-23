@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {
-    Box,
-    Button,
-    Center,
-    Checkbox,
-    FormControl,
-    Image,
-    Input,
-    Link,
-    NativeBaseProvider,
-    Text,
-    VStack,
+  Box,
+  Button,
+  Center,
+  Checkbox,
+  FormControl,
+  Image,
+  Input,
+  Link,
+  NativeBaseProvider,
+  Text,
+  VStack,
 } from 'native-base';
 import {globalStyles} from '../../assets/style/global-styling';
 import {View} from 'react-native';

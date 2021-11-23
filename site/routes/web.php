@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('users', UserTable::class)->name('users');
     Route::get('coupons', \App\Http\Livewire\CouponTable::class)->name('coupons');
-    Route::resource('notifications', \App\Http\Controllers\NotificationController::class);
+    Route::resource('bookings', \App\Http\Controllers\BookingController::class);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
