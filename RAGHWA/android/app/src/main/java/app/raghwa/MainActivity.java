@@ -1,4 +1,4 @@
-package com.raghwa;
+package app.raghwa;
 
 import com.facebook.react.ReactActivity;
 
