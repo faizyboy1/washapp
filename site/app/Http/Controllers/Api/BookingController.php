@@ -165,10 +165,10 @@ class BookingController extends Controller
     public function slots()
     {
 
-        return ['x' => Slot::select(['name', 'slot_date'])->whereColumn('capacity', '>', 'booked_slots')
+        return Slot::select(['name', 'slot_date'])->whereColumn('capacity', '>', 'booked_slots')
             ->whereDate('slot_date', '>=', now())
             ->whereDate('slot_date', '<=', now()->addDays(7))
-            ->get()->groupBy('slot_date')];
+            ->get()->groupBy('slot_date');
 
 
     }
