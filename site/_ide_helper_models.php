@@ -50,6 +50,7 @@ namespace App\Models{
  * @property int $payment_method_id
  * @property int $car_type_id
  * @property int $booking_status_id
+ * @property int $slot_id
  * @property \Illuminate\Support\Carbon $booking_date
  * @property float $amount
  * @property float $vat
@@ -78,6 +79,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereNote($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentMethodId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereSlotId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereTotalAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereVat($value)
@@ -242,19 +244,23 @@ namespace App\Models{
  * @mixin IdeHelperSlot
  * @property int $id
  * @property string $name
+ * @property string $slot_date
+ * @property int $booked_slots
+ * @property int $capacity
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
  * @property-read int|null $bookings_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $vacancies
- * @property-read int|null $vacancies_count
  * @method static \Database\Factories\SlotFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Slot newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Slot newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Slot query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot whereBookedSlots($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot whereCapacity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slot whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slot whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slot whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slot whereSlotDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slot whereUpdatedAt($value)
  */
 	class IdeHelperSlot extends \Eloquent {}
@@ -326,10 +332,12 @@ namespace App\Models{
  * @property-read int|null $tokens_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $washerBookings
  * @property-read int|null $washer_bookings_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User clientBookingsQry()
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User ofType($type)
+ * @method static \Illuminate\Database\Eloquent\Builder|User popular()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
@@ -347,30 +355,5 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class IdeHelperUser extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Vacancy
- *
- * @mixin IdeHelperVacancy
- * @property int $id
- * @property string $date
- * @property int $slot_id
- * @property int $capacity
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Database\Factories\VacancyFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy query()
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereCapacity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereSlotId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vacancy whereUpdatedAt($value)
- */
-	class IdeHelperVacancy extends \Eloquent {}
 }
 

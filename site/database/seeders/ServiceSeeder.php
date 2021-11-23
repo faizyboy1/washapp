@@ -14,15 +14,13 @@ class ServiceSeeder extends Seeder
     public function run()
     {
         \DB::table('services')->insert([
-            ['name' => 'Raghwa Regular', 'price'=>39,'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Raghwa Plus','price'=>47, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Raghwa VIP','price'=>50, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Raghwa Regular', 'sedan_price' => 39, 'family_price' => 49, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Raghwa Plus', 'sedan_price' => 47, 'family_price' => 59, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Raghwa VIP', 'sedan_price' => 50, 'family_price' => 69, 'created_at' => now(), 'updated_at' => now()],
 
-            ['name' => 'Raghwa Freshener', 'price'=>5,'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Raghwa Tissue','price'=>15, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Raghwa Mats Covering','price'=>10, 'created_at' => now(), 'updated_at' => now()],
-
-
+            ['name' => 'Raghwa Freshener', 'sedan_price' => 5, 'family_price' => 5, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Raghwa Tissue', 'sedan_price' => 15, 'family_price' => 15, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Raghwa Mats Covering', 'sedan_price' => 10, 'family_price' => 10, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

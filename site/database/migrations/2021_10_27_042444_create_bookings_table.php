@@ -15,15 +15,18 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id()->from(1000);
-            $table->foreignIdFor(\App\Models\User::class,'client_id');
-            $table->foreignIdFor(\App\Models\User::class,'washer_id');
+            $table->foreignIdFor(\App\Models\User::class, 'client_id');
+            $table->foreignIdFor(\App\Models\User::class, 'washer_id');
             $table->foreignIdFor(\App\Models\Address::class);
             $table->foreignIdFor(\App\Models\PaymentMethod::class);
-            $table->foreignIdFor(\App\Models\CarType::class);
+            $table->foreignIdFor(\App\Models\Car::class);
             $table->foreignIdFor(\App\Models\BookingStatus::class);
             $table->foreignIdFor(\App\Models\Slot::class);
-            $table->date('booking_date');
+            $table->date('booked_at')->nullable();
+            $table->date('started_at')->nullable();
+            $table->date('finished_at')->nullable();
             $table->float('amount')->default(0);
+            $table->float('discount')->default(0);
             $table->float('vat')->default(0);
             $table->float('total_amount')->default(0);
             $table->text('note')->nullable();

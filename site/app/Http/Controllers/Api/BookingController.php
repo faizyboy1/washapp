@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BookingResource;
 use App\Models\Booking;
+use App\Models\Coupon;
 use App\Models\Slot;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,9 +18,23 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function client($user)
+    {
+        $columns = ['payment_method_id', 'car_id', 'booking_status_id', 'booked_at', 'amount', 'vat', 'total_amount', 'note', 'slot_id'];
+        return $user->clientBookings()->get($columns)->groupBy('booking_status_id');
+    }
+
+    public function washer()
+    {
+        return 'x';
+    }
+
     public function index()
     {
-        return auth()->user()->bookings;
+        $user = auth()->user();
+
+        return $user->is_washer ? $this->washer($user) : $this->client($user);
     }
 
     /**
@@ -42,25 +58,33 @@ class BookingController extends Controller
     public function store(Request $request)
     {
 
+        $data = [
+            'washer_id' => User::ofType('washer')->inRandomOrder()->first()->id,
+            'client_id' => auth()->user()->id,
+            'booked_at' => $request->booked_at,
+            'address_id' => $request->address_id,
+            'payment_method_id' => $request->payment_method_id,
+            'car_id' => $request->car_id,
+            'booking_status_id' => 1, // @todo needs to be updated based on payment
+            'slot_id' => $request->slot_id
+        ];
         // check if slot is avalible otherwise create a new one
         // set the default booking cretiria
         // booked no
 
-        $booking = Booking::create([
-            'washer_id' => User::ofType('washer')->inRandomOrder()->first()->id,
-            'client_id' => auth()->user()->id,
-            'booking_date' => $request->booking_date,
-            'address_id' => $request->address_id,
-            'payment_method_id' => $request->payment_method_id,
-            'car_type_id' => $request->car_type_id,
-            'booking_status_id' => 1 // @todo needs to be updated based on payment
-        ]);
 
+        $booking = Booking::create($data);
         $booking->services()->attach($request->services);
 
-        $booking->calculateAmounts();
-        $booking->save();
 
+        $couponDiscount = $request->coupon ?
+            optional(Coupon::whereName($request->coupon)->first())->discount ?? 0
+            : 0;
+
+        $booking->calculateAmounts($couponDiscount);
+
+        $booking->save();
+        $booking->slot()->increment('booked_slots');
         return $booking->load('services');
     }
 
@@ -121,8 +145,9 @@ class BookingController extends Controller
         // validate the user gate
         // validate the new date
         // release the old slot
-
+        $booking->slot()->decrement(); //old
         $booking->update($request->all());
+        $booking->slot()->increment();//new
         return $booking->load('services');
 
     }
@@ -140,10 +165,10 @@ class BookingController extends Controller
     public function slots()
     {
 
-        return    Slot::select(['name','slot_date'])->whereColumn('capacity','>','booked_slots')
-            ->whereDate('slot_date','>=',now())
-            ->whereDate('slot_date','<=',now()->addDays(7))
-            ->get()->groupBy('slot_date');
+        return ['x' => Slot::select(['name', 'slot_date'])->whereColumn('capacity', '>', 'booked_slots')
+            ->whereDate('slot_date', '>=', now())
+            ->whereDate('slot_date', '<=', now()->addDays(7))
+            ->get()->groupBy('slot_date')];
 
 
     }

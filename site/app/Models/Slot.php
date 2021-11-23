@@ -13,6 +13,7 @@ class Slot extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slot_date', 'capacity'];
+    protected $visible = ['name', 'slot_date'];
 
     public function bookings()
     {

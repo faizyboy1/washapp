@@ -14,6 +14,8 @@ class PaymentMethod extends Model
 
     protected $fillable = ['name'];
 
+    protected $visible = ['id', 'name'];
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);

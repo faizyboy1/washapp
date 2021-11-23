@@ -18,9 +18,14 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('users',UserTable::class)->name('users');
-Route::resource('notifications', \App\Http\Controllers\NotificationController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('users', UserTable::class)->name('users');
+    Route::get('coupons', \App\Http\Livewire\CouponTable::class)->name('coupons');
+    Route::resource('notifications', \App\Http\Controllers\NotificationController::class);
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+
     return view('dashboard');
 })->name('dashboard');

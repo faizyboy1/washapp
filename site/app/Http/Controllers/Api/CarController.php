@@ -29,7 +29,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        return auth()->user()->cars()->get(['id','name','color','plate_number']);
+        return auth()->user()->cars()->get(['id', 'name', 'color', 'plate_number']);
     }
 
 
@@ -41,7 +41,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required','color'=>'required']);
+        $request->validate(['name' => 'required', 'color' => 'required']);
         return auth()->user()->cars()->create($request->all());
     }
 
@@ -67,7 +67,8 @@ class CarController extends Controller
     public function update(Request $request, Car $car)
     {
         $car->update($request->all());
-        return response()->json(['message' => __("updated successfully")]);
+        return auth()->user()->cars()->get(['id', 'name', 'color', 'plate_number']);
+//        return response()->json(['message' => __("updated successfully")]);
     }
 
     /**
@@ -79,6 +80,7 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
-        return response()->json(['message' => __("deleted successfully")]);
+        return auth()->user()->cars()->get(['id', 'name', 'color', 'plate_number']);
+//        return response()->json(['message' => __("deleted successfully")]);
     }
 }

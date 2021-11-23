@@ -19,6 +19,7 @@ class CreateCarsTable extends Migration
             $table->string('color');
             $table->string('plate_number')->nullable();
             $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\CarType::class);
             $table->timestamps();
         });
     }

@@ -24,10 +24,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 
-    Route::apiResource('cars',\App\Http\Controllers\Api\CarController::class);
-    Route::apiResource('addresses',\App\Http\Controllers\Api\AddressController::class);
-    Route::get('bookings/slots',[\App\Http\Controllers\Api\BookingController::class,'slots']);
-    Route::apiResource('bookings',\App\Http\Controllers\Api\BookingController::class);
+    Route::get('coupons/check/{couponName}', [\App\Http\Controllers\Api\CouponController::class, 'check']);
+    Route::apiResource('cars', \App\Http\Controllers\Api\CarController::class);
+    Route::apiResource('addresses', \App\Http\Controllers\Api\AddressController::class);
+    Route::get('bookings/slots', [\App\Http\Controllers\Api\BookingController::class, 'slots']);
+    Route::apiResource('bookings', \App\Http\Controllers\Api\BookingController::class);
 
     Route::get('sync/{version}', function () {
         return true;
@@ -35,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', function (Request $request) {
 
-        $user = auth()->user()->load( 'cars', 'addresses');
+        $user = auth()->user()->load('cars', 'addresses');
         $booking = $user->isWasher ? $user->load('washerBookings') : $user->load('clientBookings');
         return
             [

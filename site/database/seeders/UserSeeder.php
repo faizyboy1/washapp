@@ -16,6 +16,12 @@ class UserSeeder extends Seeder
     public function run()
     {
 
+        $user = User::factory()
+            ->hasCars(4)
+            ->hasAddresses(3)
+            ->hasClientBookings(50)
+            ->create();
+
         // washer
         User::factory(5)->create(['role_id' => 1]);
 
@@ -30,7 +36,7 @@ class UserSeeder extends Seeder
 
 //Booking::factory(1000)->for()
 
-        User::first()->update(['email' => 'a@a.com', 'phone' => '966535010102', 'is_verified' => true, 'role_id' => 2,'remember_token'=>'e6UfBDAvJb']);
+        User::first()->update(['email' => 'a@a.com', 'phone' => '966535010102', 'is_verified' => true, 'role_id' => 0, 'remember_token' => 'e6UfBDAvJb']);
 
         \DB::table('personal_access_tokens')->insert([
             'tokenable_type' => 'App\\Models\\User',

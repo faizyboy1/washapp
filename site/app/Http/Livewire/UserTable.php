@@ -27,4 +27,10 @@ class UserTable extends DataTableComponent
     {
         return User::query();
     }
+
+
+    public function notifcation()
+    {
+        
+    }
 }

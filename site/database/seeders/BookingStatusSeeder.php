@@ -16,6 +16,7 @@ class BookingStatusSeeder extends Seeder
         \DB::table('booking_statuses')->insert([
             ['name' => 'POSTED', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'CONFIRMED', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'FINISHED', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'CANCELLED', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }

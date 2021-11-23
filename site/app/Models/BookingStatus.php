@@ -12,6 +12,8 @@ class BookingStatus extends Model
 {
     use HasFactory;
 
+    protected $visible = ['id', 'name'];
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);

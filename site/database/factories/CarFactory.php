@@ -15,11 +15,12 @@ class CarFactory extends Factory
     public function definition()
     {
 
-        $carsName = ['Toyota Camry 2021','Mazda CX 9', 'Lexus LX 570'];
+        $carsName = ['Toyota Camry 2021', 'Mazda CX 9', 'Lexus LX 570'];
         return [
-            'name'=>$this->faker->randomElement($carsName),
-            'color'=>$this->faker->hexColor,
-            'plate_number'=>$this->faker->randomNumber(4).' '.Str::random(4)
+            'name' => $this->faker->randomElement($carsName),
+            'color' => $this->faker->hexColor,
+            'car_type_id' => $this->faker->numberBetween(1, 2),
+            'plate_number' => $this->faker->randomNumber(4) . ' ' . Str::random(4)
         ];
     }
 }

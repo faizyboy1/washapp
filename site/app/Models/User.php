@@ -68,9 +68,9 @@ class User extends Authenticatable
     ];
 
     public const ROLES = [
-        'client'    => 0,
-        'washer'    => 1,
-        'admin'     => 2,
+        'client' => 0,
+        'washer' => 1,
+        'admin' => 2,
     ];
 
     public function username()
@@ -98,10 +98,10 @@ class User extends Authenticatable
         return $this->addresses->contains($address);
     }
 
-    public function scopeOfType($query,$type)
+    public function scopeOfType($query, $type)
     {
 
-        return $query->where('role_id',self::ROLES[$type]);
+        return $query->where('role_id', self::ROLES[$type]);
     }
 //
 //    public function getIsAttribute()
@@ -111,28 +111,32 @@ class User extends Authenticatable
 
     public function getIsAdminAttribute()
     {
-        return $this->role_id ==self::ROLES['admin'];
+        return $this->role_id == self::ROLES['admin'];
     }
 
     public function getIsWasherAttribute()
     {
-        return $this->role_id ==self::ROLES['washer'];
+        return $this->role_id == self::ROLES['washer'];
     }
 
     public function getIsClientAttribute()
     {
-        return $this->role_id ==self::ROLES['client'];
+        return $this->role_id == self::ROLES['client'];
     }
 
     public function washerBookings()
     {
-        return $this->hasMany(Booking::class,'washer_id');
+        return $this->hasMany(Booking::class, 'washer_id');
     }
 
     public function clientBookings()
     {
-        return $this->hasMany(Booking::class,'client_id');
+        return $this->hasMany(Booking::class, 'client_id');
     }
 
+    public function scopeClientBookingsQry($query)
+    {
+        return $query->clientBookings()->select(['id']);
+    }
 
 }

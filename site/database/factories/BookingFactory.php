@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Booking;
 use App\Models\BookingStatus;
+use App\Models\Car;
 use App\Models\CarType;
 use App\Models\PaymentMethod;
 use App\Models\Service;
@@ -23,7 +24,7 @@ class BookingFactory extends Factory
         return [
 
             'washer_id' => function (array $attributes) {
-                return optional(User::where('role_id', 1)->inRandomOrder()->first())->id;
+                return optional(User::where('role_id', 1)->inRandomOrder()->first())->id ?? 1;
             },
             'client_id' => function (array $attributes) {
                 return optional(User::where('role_id', 0)->inRandomOrder()->first())->id;
@@ -35,8 +36,8 @@ class BookingFactory extends Factory
             'payment_method_id' => function (array $attributes) {
                 return PaymentMethod::inRandomOrder()->first()->id;
             },
-            'car_type_id' => function (array $attributes) {
-                return CarType::inRandomOrder()->first()->id;
+            'car_id' => function (array $attributes) {
+                return Car::where('user_id', $attributes['client_id'])->inRandomOrder()->first()->id;
             },
             'slot_id' => function (array $attributes) {
                 return Slot::inRandomOrder()->first()->id;
@@ -44,7 +45,7 @@ class BookingFactory extends Factory
             'booking_status_id' => function (array $attributes) {
                 return BookingStatus::inRandomOrder()->first()->id;
             },
-            'booking_date' => $this->faker->dateTimeBetween('now', '+7 days'),
+            'booked_at' => $this->faker->dateTimeBetween('now', '+7 days'),
 
             'note' => $this->faker->sentence(50)
         ];
