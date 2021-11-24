@@ -32,9 +32,11 @@
                     </div>
 
                     <div class="md:flex md:items-center">
-                        <x-jet-button wire:click="create">
-                            <span>{{ __('Create') }}</span>
-                        </x-jet-button>
+                        @isset($createEnabled)
+                            <x-jet-button wire:click="create">
+                                <span>{{ __('Create') }}</span>
+                            </x-jet-button>
+                        @endisset
                         <div>@include('livewire-tables::tailwind.includes.bulk-actions')</div>
                         <div>@include('livewire-tables::tailwind.includes.column-select')</div>
                         <div>@include('livewire-tables::tailwind.includes.per-page')</div>

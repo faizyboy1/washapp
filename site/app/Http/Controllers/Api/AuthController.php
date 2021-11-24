@@ -27,9 +27,12 @@ class AuthController extends Controller
             'password' => bcrypt($attr['password']),
             'phone' => $attr['phone']
         ]);
-        $this->generateOtp($user);
 
-        return response()->json(['message'=>__('Registration were successful')]);
+        auth()->login($user);
+        $this->user($request);
+//        $this->generateOtp($user);
+
+        return response()->json(['message' => __('Registration were successful')]);
 //        return $this->verify();
 //        return [
 //            'token' => $user->createToken('tokens')->plainTextToken
@@ -37,12 +40,12 @@ class AuthController extends Controller
     }
 
 
-    public function generateOtp($user)
-    {
-        // send OTP code
-        $code = Otp::digits(4)->generate($user->phone);
-        $user->notify(new VerificationMessage($code));
-    }
+//    public function generateOtp($user)
+//    {
+//        // send OTP code
+////        $code = Otp::digits(4)->generate($user->phone);
+//        //     $user->notify(new VerificationMessage($code));
+//    }
 
     public function verify(Request $request)
     {
@@ -58,8 +61,8 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            "message"=> __("The given data was invalid."),
-        ],422);
+            "message" => __("The given data was invalid."),
+        ], 422);
 
         // verify code and log the user
 //        \auth()->user()->ver
@@ -76,16 +79,27 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::attempt($attr)) {
-            return response()->json(['message'=>'Credentials not match'], 401);
+            return response()->json(['message' => 'Credentials not match'], 401);
         }
 
-        $user = auth()->user()->load( 'cars', 'addresses');
-        $booking = $user->isWasher ? $user->load('washerBookings') : $user->load('clientBookings');
-
-$user->token = auth()->user()->createToken('mobileApp')->plainTextToken;
-        return $user;
+        return $this->user($request);
 //        return ['token' => auth()->user()->createToken('mobileApp')->plainTextToken,'user'=>$userData];
 
+    }
+
+    public function user(Request $request)
+    {
+        $user = auth()->user()->load('cars', 'addresses');
+        if ($request->fcm_token && $user->fcm_token != $request->fcm_token) {
+            $user->update(['fcm_token' => $request->fcm_token]);
+        }
+
+        $user->isWasher ? $user->load('washerBookings') : $user->load('clientBookings');
+        $user->token = auth()->user()->createToken('mobileApp')->plainTextToken;
+
+//        $user->isWasher ? $user->load('washerBookings') : $user->load('clientBookings');
+
+        return $user;
     }
 
     // this method signs out users by removing tokens
@@ -97,5 +111,15 @@ $user->token = auth()->user()->createToken('mobileApp')->plainTextToken;
             'message' => 'Tokens Revoked'
         ];
     }
-    //use this method to signin users
+
+    public function refreshFCM(Request $request)
+    {
+
+        $this->validate(['token' => 'required']);
+
+        auth()->user()->update(['fcm_token' => $request->token]);
+
+        return response()->json(['message' => __('token was updated successfully')]);
+    }
+
 }
