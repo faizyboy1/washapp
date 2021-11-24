@@ -10,6 +10,7 @@ import {
   Link,
   NativeBaseProvider,
   Text,
+  useToast,
   VStack,
 } from 'native-base';
 import {globalStyles} from '../../assets/style/global-styling';
@@ -18,6 +19,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import axios from 'axios';
 import {AppContext} from '../../utils/AppContext';
 import {request} from '../../utils/useRequest';
+import {useTranslation} from 'react-i18next';
 
 const logoImage = require('../../assets/images/logo.png');
 
@@ -39,8 +41,13 @@ export default function register({navigation}) {
   const [phone, setPhone] = useState(null);
   const [password, setPassword] = useState(null);
   const [passwordConfirmation, setPasswordConfirmation] = useState(null);
-  const {FCMToken} = useContext(AppContext);
+  const {FCMToken, setToken, setUser} = useContext(AppContext);
+  const toast = useToast();
+  const {t} = useTranslation();
+
   const register = () => {
+    // @todo validate data
+
     let data = {
       name: name, //Saleh
       phone: `966${phone}`, //535010102 //@todo needs to validate phone not contained
@@ -54,15 +61,31 @@ export default function register({navigation}) {
     request({
       url: '/register',
       method: 'post',
-      data: {
-        name: name, //535010111 //@todo needs to validate phone not contained
-        phone: `966${phone}`, //535010102 //@todo needs to validate phone not contained
-        password: password, //12345678
-        password_confirmation: passwordConfirmation, //12345678
-      },
+      data,
     })
-      .then(response => console.log(response.data))
-      .catch(error => console.log(error)); //setCars(response.data)
+      .then(response => {
+        setToken(response?.data?.token);
+        setUser(response.data);
+        toast.show({
+          text: 'LoginSuccessfully',
+          type: 'success',
+          duration: 6000,
+          navigate: navigation.navigate('Drawer'),
+          textStyle: {
+            paddingTop: 1,
+            paddingBottom: 1,
+            lineHeight: 20,
+          },
+        });
+      })
+      .catch(error => {
+        console.log(error.message);
+        toast.show({
+          status: 'error',
+          description: error.response?.data?.message ?? t('Error'),
+          title: t('Something went wrong'),
+        });
+      });
   };
 
   return (

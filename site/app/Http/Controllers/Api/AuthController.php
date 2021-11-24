@@ -29,10 +29,9 @@ class AuthController extends Controller
         ]);
 
         auth()->login($user);
-        $this->user($request);
+        return $this->user($request);
 //        $this->generateOtp($user);
 
-        return response()->json(['message' => __('Registration were successful')]);
 //        return $this->verify();
 //        return [
 //            'token' => $user->createToken('tokens')->plainTextToken
