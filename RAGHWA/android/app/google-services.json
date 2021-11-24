@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "685181206911",
+    "project_id": "raghwa-6ee74",
+    "storage_bucket": "raghwa-6ee74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685181206911:android:3b06db5a5bcf2357c7da4a",
+        "android_client_info": {
+          "package_name": "app.raghwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685181206911-j9elq63j366el2tj4fqde30nij3qc3ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR921sZpaeU1535EgkOatGClwFpgWmkkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685181206911-j9elq63j366el2tj4fqde30nij3qc3ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

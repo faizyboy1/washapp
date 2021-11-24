@@ -22,7 +22,8 @@ class CreateBookingsTable extends Migration
             $table->foreignIdFor(\App\Models\Car::class);
             $table->foreignIdFor(\App\Models\BookingStatus::class);
             $table->foreignIdFor(\App\Models\Slot::class);
-            $table->date('booked_at')->nullable();
+//            $table->date('booked_at')->nullable();
+            $table->boolean('is_paid')->default(0);
             $table->date('started_at')->nullable();
             $table->date('finished_at')->nullable();
             $table->float('amount')->default(0);

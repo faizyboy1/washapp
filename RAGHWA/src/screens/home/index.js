@@ -47,7 +47,7 @@ export default function Home({navigation}) {
       return true;
     }
 
-    if (!car.id) {
+    if (!car?.id) {
       Alert.alert(
         t('Missing Information'),
         t('Please select the required car'),
