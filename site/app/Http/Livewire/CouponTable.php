@@ -64,14 +64,17 @@ class CouponTable extends DataTableComponent
         return [
             Column::make('name')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->selected(),
             Column::make('discount')->sortable()
-                ->searchable(),
+                ->searchable()
+                ->selected(),
             Column::make('note')->sortable()
-                ->searchable(),
+                ->searchable()
+                ->selected(),
             Column::blank()->format(function ($value, $column, $row) {
                 return view('components.actions')->withRow($row);
-            })
+            })->selected()
         ];
     }
 

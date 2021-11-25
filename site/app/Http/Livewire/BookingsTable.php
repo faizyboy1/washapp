@@ -5,80 +5,42 @@ namespace App\Http\Livewire;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Coupon;
+use App\Models\Booking;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class BookingsTable extends DataTableComponent
 {
-    public bool $columnSelect = true;
-    public $createEnabled = false;
-// To show/hide the modal
-    public bool $viewingModal = false;
 
-// The information currently being displayed in the modal
-    public string $defaultSortColumn = 'name';
+    public bool $columnSelect = true;
+    public string $defaultSortColumn = 'id';
     public string $defaultSortDirection = 'desc';
     public $currentModal;
-
-    public function delete(Coupon $coupon)
-    {
-        $coupon->delete();
-    }
-
-    public Coupon $coupon;
-
-    protected $rules = ['coupon.name' => 'required|unique:coupons,name', 'coupon.discount' => 'integer|required|between:0,100', 'coupon.note' => 'nullable'];
-
-    public function create()
-    {
-        $this->coupon = new Coupon;
-        $this->viewingModal = true;
-    }
-
-    public function mount()
-    {
-        $this->coupon = new Coupon;
-    }
-
-    public function store()
-    {
-        $this->validate();
-
-        $this->coupon->save();
-        $this->reset('viewingModal', 'currentModal');
-
-    }
-
-    public function modalsView(): string
-    {
-        return 'coupons.modal';
-    }
-
-    public function resetModal(): void
-    {
-        $this->reset('viewingModal', 'currentModal');
-    }
+    public $refresh = true;
 
     public function columns(): array
     {
         return [
-            Column::make('name')
-                ->sortable()
-                ->searchable(),
-            Column::make('discount')->sortable()
-                ->searchable(),
-            Column::make('note')->sortable()
-                ->searchable(),
-            Column::blank()->format(function ($value, $column, $row) {
-                return view('components.actions')->withRow($row);
-            })
+            Column::make('ID', 'id')->searchable()->selected(),
+            Column::make('Status', 'status.name')->searchable()->selected(),
+            Column::make('Booked On', 'booked_at'),
+            Column::make('Started On', 'started_at'),
+            Column::make('Finished On', 'finished_at'),
+            Column::make('Amount (Inc. VAT)', 'total_amount')->selected(),
+            Column::make('Amount (Exc. VAT)', 'amount'),
+            Column::make('Slot Date', 'slot.slot_date')->searchable()->selected(),
+            Column::make('Slot Time', 'slot.name')->searchable(),
+            Column::make('Car', 'car.name')->searchable()->selected(),
+            Column::make('Car Number', 'car.plate_number')->searchable(),
+//            Column::make('Car Type', 'car.type.name')->searchable(),
+            Column::make('Notes', 'note')->searchable(),
         ];
     }
 
-// Confirmed, Cancelled, Finished, Posted
+    // Confirmed, Cancelled, Finished, Posted
     public array $bulkActions = [
-        'setDone' => 'Change to Done',
-        'setCancel' => 'Change to Cancel',
-//        'showNotificationModal' => 'Send Notification',
+    'setDone' => 'Change to Done',
+    'setCancel' => 'Change to Cancel',
+    'setConfirm' => 'Change To Confirm',
     ];
 
 
@@ -92,6 +54,11 @@ class BookingsTable extends DataTableComponent
         $this->setStatus(4);
     }
 
+    public function setConfirm()
+    {
+        $this->setStatus(2);
+    }
+
     public function setStatus($id)
     {
         $this->selectedRowsQuery()->update(['booking_status_id' => $id]);
@@ -99,6 +66,6 @@ class BookingsTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return Coupon::query();
+        return Booking::query();
     }
 }

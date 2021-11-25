@@ -17,12 +17,15 @@ class UserTable extends DataTableComponent
         return [
             Column::make('Name')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->selected(),
             Column::make('E-mail', 'email')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->selected(),
             Column::make('Verified', 'email_verified_at')
-                ->sortable(),
+                ->sortable()
+                ->selected(),
         ];
     }
 
