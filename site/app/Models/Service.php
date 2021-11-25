@@ -12,8 +12,8 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','price'];
-    protected $visible = ['id','name', 'price'];
+    protected $fillable = ['name', 'family_price', 'sedan_price'];
+    protected $visible = ['id', 'name', 'family_price', 'sedan_price'];
 
     public function bookings()
     {
