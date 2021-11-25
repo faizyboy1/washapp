@@ -79,4 +79,22 @@ class UserTable extends DataTableComponent
     }
 
 
+    public function getTableRowUrl(): string
+    {
+        return '#';
+    }
+
+    public function viewModal($modelId): void
+    {
+        $this->modalName = 'users.bookings';
+        $this->viewingModal = true;
+        $this->currentModal = User::findOrFail($modelId)->clientBookings;
+    }
+
+    public function setTableRowAttributes($row): array
+    {
+        return ['wire:click.prevent' => 'viewModal(' . $row->id . ')'];
+    }
+
+
 }

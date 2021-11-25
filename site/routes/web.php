@@ -21,8 +21,9 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('users', UserTable::class)->name('users');
+    Route::get('bookings', \App\Http\Livewire\BookingsTable::class)->name('bookings');
     Route::get('coupons', \App\Http\Livewire\CouponTable::class)->name('coupons');
-    Route::resource('bookings', \App\Http\Controllers\BookingController::class);
+//    Route::resource('bookings', \App\Http\Controllers\BookingController::class);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
