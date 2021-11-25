@@ -21,20 +21,12 @@ class BookingsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-<<<<<<< HEAD
-            Column::make('ID', 'id')->searchable()->sortable()->selected(),
-            Column::make('Status', 'status.name')
-                ->searchable()
-                ->selected(),
-            Column::make('Booked On', 'booked_at')->sortable(),
-            Column::make('Started On', 'started_at')->sortable(),
-            Column::make('Finished On', 'finished_at')->sortable(),
-=======
+
             Column::make('ID', 'id')->searchable()->selected(),
             Column::make('Status', 'status.name')->searchable()->selected(),
             Column::make('Started On', 'started_at'),
             Column::make('Finished On', 'finished_at'),
->>>>>>> 30f4ccb49b2741bf907e9fab972cd287caf50382
+
             Column::make('Amount (Inc. VAT)', 'total_amount')->selected(),
             Column::make('Amount (Exc. VAT)', 'amount'),
             Column::make('Slot Date', 'slot.slot_date')->searchable()->selected(),
