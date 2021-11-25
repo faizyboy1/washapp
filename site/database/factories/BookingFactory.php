@@ -45,7 +45,7 @@ class BookingFactory extends Factory
             'booking_status_id' => function (array $attributes) {
                 return BookingStatus::inRandomOrder()->first()->id;
             },
-            'booked_at' => $this->faker->dateTimeBetween('now', '+7 days'),
+//            'booked_at' => $this->faker->dateTimeBetween('now', '+7 days'),
 
             'note' => $this->faker->sentence(50)
         ];

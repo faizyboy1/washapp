@@ -60,13 +60,18 @@ export default () => {
           )}
           <Stack.Screen
             name="Login"
-            options={{...options, title: t('Login')}}
+            options={{...options, title: t('Login'), headerShown: false}}
             component={Login}
           />
           <Stack.Screen
             name="Register"
             options={{...options, title: t('Register')}}
             component={Register}
+          />
+          <Stack.Screen
+            name="Terms and Conditions"
+            options={{...options, title: t('Terms')}}
+            component={Terms}
           />
         </>
       );
@@ -93,11 +98,7 @@ export default () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="CarForm" component={CarForm} />
-        <Stack.Screen
-          name="Terms and Conditions"
-          options={{...options, title: t('Terms')}}
-          component={Terms}
-        />
+
         <Stack.Screen
           name="Cars"
           options={{...options, title: t('Cars')}}

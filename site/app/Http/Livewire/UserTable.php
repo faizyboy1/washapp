@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Actions\Notifier;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -23,14 +24,59 @@ class UserTable extends DataTableComponent
         ];
     }
 
+    public array $bulkActions = [
+        'exportSelected' => 'Export',
+        'showNotificationModal' => 'Send Notification',
+    ];
+
     public function query(): Builder
     {
         return User::query();
     }
 
-
-    public function notifcation()
+    public function exportSelected()
     {
-        
+        // Do something with the selected rows.
     }
+
+
+    private $modalName = 'notifications.modal';
+    public bool $viewingModal = false;
+    public $currentModal;
+
+    public function modalsView(): string
+    {
+
+        return $this->modalName;
+    }
+
+    public function resetModal(): void
+    {
+        $this->reset('viewingModal', 'currentModal');
+    }
+
+    public function showNotificationModal()
+    {
+        if ($this->selectedRowsQuery->count() > 0) {
+            $this->notificationType = __('Send To: Selected') . " (" . count($this->selected) . ")";
+            // Do something with the selected rows
+        }
+        $this->modalName = 'notifications.modal';
+        $this->viewingModal = true;
+    }
+
+
+    public $notificationTitle = '', $notificationDescription = '', $notificationType = 'Send To: All';
+
+    public function sendNotification()
+    {
+
+        if ($this->selectedRowsQuery->count() > 0) {
+            $tokens = $this->selectedRowsQuery()->pluck('fcm_token')->toArray();
+            return Notifier::sendNotification($this->notificationDescription, $this->notificationTitle, $tokens);
+        }
+        Notifier::sendNotification($this->notificationDescription, $this->notificationTitle);
+    }
+
+
 }

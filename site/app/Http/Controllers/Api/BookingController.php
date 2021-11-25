@@ -21,7 +21,7 @@ class BookingController extends Controller
 
     public function client($user)
     {
-        $columns = ['payment_method_id', 'car_id', 'booking_status_id', 'booked_at', 'amount', 'vat', 'total_amount', 'note', 'slot_id'];
+        $columns = ['payment_method_id', 'car_id', 'booking_status_id', 'amount', 'vat', 'total_amount', 'note', 'slot_id'];
         return $user->clientBookings()->get($columns)->groupBy('booking_status_id');
     }
 
@@ -61,11 +61,11 @@ class BookingController extends Controller
         $data = [
             'washer_id' => User::ofType('washer')->inRandomOrder()->first()->id,
             'client_id' => auth()->user()->id,
-            'booked_at' => $request->booked_at,
+//            'booked_at' => $request->booked_at,
             'address_id' => $request->address_id,
             'payment_method_id' => $request->payment_method_id,
             'car_id' => $request->car_id,
-            'booking_status_id' => 1, // @todo needs to be updated based on payment
+            'booking_status_id' => 1,
             'slot_id' => $request->slot_id
         ];
         // check if slot is avalible otherwise create a new one
@@ -165,7 +165,7 @@ class BookingController extends Controller
     public function slots()
     {
 
-        return Slot::select(['name', 'slot_date'])->whereColumn('capacity', '>', 'booked_slots')
+        return Slot::select(['id', 'name', 'slot_date'])->whereColumn('capacity', '>', 'booked_slots')
             ->whereDate('slot_date', '>=', now())
             ->whereDate('slot_date', '<=', now()->addDays(7))
             ->get()->groupBy('slot_date');

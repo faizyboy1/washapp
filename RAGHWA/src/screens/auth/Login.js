@@ -23,7 +23,7 @@ const logoImage = require('../../assets/images/logo.png');
 
 export default function ({navigation}) {
   const {t} = useTranslation();
-  const {token, setToken, user, setUser} = useContext(AppContext);
+  const {FCMToken, setToken, setUser} = useContext(AppContext);
   const toast = useToast();
   // const [loading, setLoading] = useState(false);
 
@@ -41,6 +41,7 @@ export default function ({navigation}) {
       data: {
         phone: `966${phone}`, //535010102 //@todo needs to validate phone not contained
         password: password,
+        fcm_token: FCMToken,
       },
     })
       .then(response => {

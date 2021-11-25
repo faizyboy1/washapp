@@ -59,7 +59,7 @@ export default ({couponDiscount, setCouponDiscount}) => {
         trigger={triggerProps => {
           return (
             <Button {...triggerProps} onPress={onOpen} colorScheme="info">
-              {t('Coupon')}safdsfsadfdsaf asdfdsaf
+              {t('Coupon')}
             </Button>
           );
         }}>

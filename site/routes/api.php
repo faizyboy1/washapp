@@ -34,19 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
         return true;
     });
 
-    Route::get('/user', function (Request $request) {
+    Route::post('refreshFCM', [\App\Http\Controllers\Api\AuthController::class, 'refreshFCM']);
 
-        $user = auth()->user()->load('cars', 'addresses');
-        $booking = $user->isWasher ? $user->load('washerBookings') : $user->load('clientBookings');
-        return
-            [
-                'user' => $request->user(),
-                'is_washer' => $user->isWasher,
-                'bookings' => $booking,
-                'cars' => $user->cars,
-                'addresses' => $user->addresses
-            ];
-    });
+    Route::get('/user', [\App\Http\Controllers\Api\AuthController::class, 'user']);
 });
 
 

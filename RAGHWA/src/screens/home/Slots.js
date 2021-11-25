@@ -25,8 +25,8 @@ export default ({slot, setSlot}) => {
   const [slots, setSlots] = useState([]);
   const {tokenHeader} = useContext(AppContext);
   const renderDates = () => {
-    console.log(slots);
-    if (loading || !isOpen) {
+    console.log(slots, loading);
+    if (loading) {
       return <Spinner />;
     }
     if (!slots) {
@@ -129,7 +129,9 @@ export default ({slot, setSlot}) => {
   };
 
   const loadSlots = () => {
+    console.log(loading);
     setLoading(true);
+    console.log('loading......', loading);
     const params = {
       ...tokenHeader,
       ...{
