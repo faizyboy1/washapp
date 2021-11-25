@@ -74,7 +74,7 @@ class CouponTable extends DataTableComponent
                 ->selected(),
             Column::blank()->format(function ($value, $column, $row) {
                 return view('components.actions')->withRow($row);
-            })->selected()
+            })
         ];
     }
 

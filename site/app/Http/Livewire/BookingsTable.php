@@ -12,6 +12,7 @@ class BookingsTable extends DataTableComponent
 {
 
     public bool $columnSelect = true;
+    public bool $perPageAll = true;
     public string $defaultSortColumn = 'id';
     public string $defaultSortDirection = 'desc';
     public $currentModal;
@@ -20,11 +21,13 @@ class BookingsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')->searchable()->selected(),
-            Column::make('Status', 'status.name')->searchable()->selected(),
-            Column::make('Booked On', 'booked_at'),
-            Column::make('Started On', 'started_at'),
-            Column::make('Finished On', 'finished_at'),
+            Column::make('ID', 'id')->searchable()->sortable()->selected(),
+            Column::make('Status', 'status.name')
+                ->searchable()
+                ->selected(),
+            Column::make('Booked On', 'booked_at')->sortable(),
+            Column::make('Started On', 'started_at')->sortable(),
+            Column::make('Finished On', 'finished_at')->sortable(),
             Column::make('Amount (Inc. VAT)', 'total_amount')->selected(),
             Column::make('Amount (Exc. VAT)', 'amount'),
             Column::make('Slot Date', 'slot.slot_date')->searchable()->selected(),
@@ -62,10 +65,30 @@ class BookingsTable extends DataTableComponent
     public function setStatus($id)
     {
         $this->selectedRowsQuery()->update(['booking_status_id' => $id]);
+        $this->resetAll();
+    }
+
+    public function filters(): array
+    {
+        return [
+            'status' => Filter::make('Status')
+                ->multiSelect([
+                    '1' => 'Posted',
+                    '2' => 'Confirmed',
+                    '3' => 'Finished',
+                    '4' => 'Canceled',
+                ]),
+        ];
     }
 
     public function query(): Builder
     {
-        return Booking::query();
+        return Booking::query()
+            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('booking_status_id', $status));
     }
+
+//    public function query(): Builder
+//    {
+//        return Booking::query();
+//    }
 }
