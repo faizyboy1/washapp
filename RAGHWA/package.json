@@ -10,6 +10,11 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "@react-aria/combobox": "^3.1.0",
+    "@react-aria/live-announcer": "^3.0.1",
+    "@react-aria/menu": "^3.2.3",
+    "@react-aria/overlays": "^3.7.2",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/material-top-tabs": "^6.0.6",
@@ -19,6 +24,7 @@
     "i18next": "^21.4.0",
     "native-base": "^3.2.1",
     "react": "17.0.2",
+    "react-dom": "^17.0.2",
     "react-i18next": "^11.13.0",
     "react-native": "0.66.2",
     "react-native-app-intro-slider": "^4.0.4",
@@ -26,7 +32,7 @@
     "react-native-geolocation-service": "^5.3.0-beta.3",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-google-places-autocomplete": "^2.4.1",
-    "react-native-maps": "^0.29.3",
+    "react-native-maps": "^0.29.4",
     "react-native-mmkv-storage": "^0.6.6",
     "react-native-pager-view": "^5.4.8",
     "react-native-reanimated": "^2.2.3",
@@ -37,8 +43,10 @@
     "react-native-svg": "^12.1.1",
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^9.0.0",
+    "react-native-web": "^0.17.5",
     "styled-components": "^5.3.3",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "typescript": "^4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

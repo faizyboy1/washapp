@@ -8,7 +8,7 @@ import {
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 // import i18n from '../locals/index';
 import Home from '../screens/home';
-import Terms from '../screens/Terms';
+import Terms from '../screens/terms';
 import TellFriend from '../screens/Share';
 import Records from './tabs';
 import Cars from '../screens/cars';

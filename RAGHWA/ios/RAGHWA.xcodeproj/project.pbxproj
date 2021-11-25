@@ -11,29 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3980840921A1E5F4F8DF6CC6 /* libPods-RAGHWA-RAGHWATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DC5CD4F358A253B2EEACDB /* libPods-RAGHWA-RAGHWATests.a */; };
+		2959FD47310BDEB8A900C9F3 /* libPods-RAGHWA-RAGHWATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C920CA1877BA7E4DAAEB4F70 /* libPods-RAGHWA-RAGHWATests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		DA709D4C454D770FCA005F06 /* libPods-RAGHWA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB4E368B57D9CCDFE4E1F /* libPods-RAGHWA.a */; };
-		454F8819F13B46639F630775 /* Almarai-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D2D6A907B43421CBC394E8A /* Almarai-Bold.ttf */; };
-		A60EF1A8A53D437FAC5AEE25 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41E370C1FB104BE0ABA84F79 /* AntDesign.ttf */; };
-		BC3C4F40E4E842FD9C097A63 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1B24ADE53294A4FB9538BB7 /* Entypo.ttf */; };
-		5F47AE6CD0564C39A3AAF6A2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E963911A46AE45C2B85D0B6C /* EvilIcons.ttf */; };
-		4B7BC7357CCC40ABAF8C3C38 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43AE4B6BC5684BE7967BE884 /* Feather.ttf */; };
-		E5163F36D2574B3BB47A1EA5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 422DF37B3EFA4FF3A378D8BE /* FontAwesome.ttf */; };
-		F033441A443042B1874316E6 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A09733373E7B47819AC2B5F2 /* FontAwesome5_Brands.ttf */; };
-		AF4136F2ABC04EAFAA52B8B6 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CC2B41705124DD0993D9A39 /* FontAwesome5_Regular.ttf */; };
-		62BEB10F14C1497887BCF9BA /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39329284631946E8BB321B88 /* FontAwesome5_Solid.ttf */; };
-		6A88D52E88DA414F88574266 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12ECF92E3D2843FCB3415B07 /* Fontisto.ttf */; };
-		C2950B3A126D4C03983A4BE6 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AC5B22005B944769235FD76 /* Foundation.ttf */; };
-		438DC40BBB8E4190A9FD9B36 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03FF3BA8D4A8485E966CF1D3 /* Ionicons.ttf */; };
-		717B9DB60B874C64B3936BC4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6E30ECE3144DAE9668A160 /* MaterialCommunityIcons.ttf */; };
-		9FF32B5900034A43AB394E79 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DCA591F4F3E4FECB986C152 /* MaterialIcons.ttf */; };
-		AB881FAB687944079D395CB5 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DFADE45B4A3419E9B3F012F /* Octicons.ttf */; };
-		CBEC87795B3F44C4952046B6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE90DCB2E70A40C0A01ED951 /* SimpleLineIcons.ttf */; };
-		79BA1357C67E4A408C309089 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62EEA1C563BA4D7A8530D603 /* Zocial.ttf */; };
-		9E12E2CC3E6C4E759C3E303D /* Almarai-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5393773B374AB58B925DB1 /* Almarai-ExtraBold.ttf */; };
-		45EB2418A00E4D96B8168C95 /* Almarai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69131BDECA5F4E87B590677D /* Almarai-Light.ttf */; };
-		940C8FD81DA84468A81C8662 /* Almarai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF08162B530A41F4B0EA2B96 /* Almarai-Regular.ttf */; };
+		932017CEE51967C44AE11EBD /* libPods-RAGHWA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAB184A0310D35E8DB821A2 /* libPods-RAGHWA.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,34 +36,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RAGHWA/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RAGHWA/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RAGHWA/main.m; sourceTree = "<group>"; };
-		18072C393DE5ACBB9894617A /* Pods-RAGHWA-RAGHWATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA-RAGHWATests.release.xcconfig"; path = "Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests.release.xcconfig"; sourceTree = "<group>"; };
-		3B0F52AA8216D0BA2BAFE1B2 /* Pods-RAGHWA-RAGHWATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA-RAGHWATests.debug.xcconfig"; path = "Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests.debug.xcconfig"; sourceTree = "<group>"; };
+		16D5EF1EB6676A4D9E57EB6E /* Pods-RAGHWA-RAGHWATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA-RAGHWATests.debug.xcconfig"; path = "Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests.debug.xcconfig"; sourceTree = "<group>"; };
+		1EAB184A0310D35E8DB821A2 /* libPods-RAGHWA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAGHWA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44EF9DC6ADEE25AD0943174C /* Pods-RAGHWA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA.debug.xcconfig"; path = "Target Support Files/Pods-RAGHWA/Pods-RAGHWA.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RAGHWA/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E9169E5106AB96C1A4B79E6D /* Pods-RAGHWA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA.debug.xcconfig"; path = "Target Support Files/Pods-RAGHWA/Pods-RAGHWA.debug.xcconfig"; sourceTree = "<group>"; };
+		C8EA8A6EDB138736990FDF64 /* Pods-RAGHWA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA.release.xcconfig"; path = "Target Support Files/Pods-RAGHWA/Pods-RAGHWA.release.xcconfig"; sourceTree = "<group>"; };
+		C920CA1877BA7E4DAAEB4F70 /* libPods-RAGHWA-RAGHWATests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAGHWA-RAGHWATests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBCBD3292391AECCE6929F0F /* Pods-RAGHWA-RAGHWATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA-RAGHWATests.release.xcconfig"; path = "Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F3DC5CD4F358A253B2EEACDB /* libPods-RAGHWA-RAGHWATests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAGHWA-RAGHWATests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6500DA5FA72716C3EC0DDC3 /* Pods-RAGHWA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAGHWA.release.xcconfig"; path = "Target Support Files/Pods-RAGHWA/Pods-RAGHWA.release.xcconfig"; sourceTree = "<group>"; };
-		FBCBB4E368B57D9CCDFE4E1F /* libPods-RAGHWA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAGHWA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D2D6A907B43421CBC394E8A /* Almarai-Bold.ttf */ = {isa = PBXFileReference; name = "Almarai-Bold.ttf"; path = "../src/assets/fonts/Almarai-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		41E370C1FB104BE0ABA84F79 /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A1B24ADE53294A4FB9538BB7 /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E963911A46AE45C2B85D0B6C /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		43AE4B6BC5684BE7967BE884 /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		422DF37B3EFA4FF3A378D8BE /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A09733373E7B47819AC2B5F2 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5CC2B41705124DD0993D9A39 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		39329284631946E8BB321B88 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		12ECF92E3D2843FCB3415B07 /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9AC5B22005B944769235FD76 /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		03FF3BA8D4A8485E966CF1D3 /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FD6E30ECE3144DAE9668A160 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6DCA591F4F3E4FECB986C152 /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2DFADE45B4A3419E9B3F012F /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EE90DCB2E70A40C0A01ED951 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		62EEA1C563BA4D7A8530D603 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0C5393773B374AB58B925DB1 /* Almarai-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Almarai-ExtraBold.ttf"; path = "../src/assets/fonts/Almarai-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		69131BDECA5F4E87B590677D /* Almarai-Light.ttf */ = {isa = PBXFileReference; name = "Almarai-Light.ttf"; path = "../src/assets/fonts/Almarai-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FF08162B530A41F4B0EA2B96 /* Almarai-Regular.ttf */ = {isa = PBXFileReference; name = "Almarai-Regular.ttf"; path = "../src/assets/fonts/Almarai-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3980840921A1E5F4F8DF6CC6 /* libPods-RAGHWA-RAGHWATests.a in Frameworks */,
+				2959FD47310BDEB8A900C9F3 /* libPods-RAGHWA-RAGHWATests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA709D4C454D770FCA005F06 /* libPods-RAGHWA.a in Frameworks */,
+				932017CEE51967C44AE11EBD /* libPods-RAGHWA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,54 +96,26 @@
 			name = RAGHWA;
 			sourceTree = "<group>";
 		};
-		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+		267B6AA8883B50208702C878 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				FBCBB4E368B57D9CCDFE4E1F /* libPods-RAGHWA.a */,
-				F3DC5CD4F358A253B2EEACDB /* libPods-RAGHWA-RAGHWATests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		45ABA64833338988D86C534F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E9169E5106AB96C1A4B79E6D /* Pods-RAGHWA.debug.xcconfig */,
-				F6500DA5FA72716C3EC0DDC3 /* Pods-RAGHWA.release.xcconfig */,
-				3B0F52AA8216D0BA2BAFE1B2 /* Pods-RAGHWA-RAGHWATests.debug.xcconfig */,
-				18072C393DE5ACBB9894617A /* Pods-RAGHWA-RAGHWATests.release.xcconfig */,
+				44EF9DC6ADEE25AD0943174C /* Pods-RAGHWA.debug.xcconfig */,
+				C8EA8A6EDB138736990FDF64 /* Pods-RAGHWA.release.xcconfig */,
+				16D5EF1EB6676A4D9E57EB6E /* Pods-RAGHWA-RAGHWATests.debug.xcconfig */,
+				CBCBD3292391AECCE6929F0F /* Pods-RAGHWA-RAGHWATests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		484BE71592FC415CA240E1CC /* Resources */ = {
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6D2D6A907B43421CBC394E8A /* Almarai-Bold.ttf */,
-				41E370C1FB104BE0ABA84F79 /* AntDesign.ttf */,
-				A1B24ADE53294A4FB9538BB7 /* Entypo.ttf */,
-				E963911A46AE45C2B85D0B6C /* EvilIcons.ttf */,
-				43AE4B6BC5684BE7967BE884 /* Feather.ttf */,
-				422DF37B3EFA4FF3A378D8BE /* FontAwesome.ttf */,
-				A09733373E7B47819AC2B5F2 /* FontAwesome5_Brands.ttf */,
-				5CC2B41705124DD0993D9A39 /* FontAwesome5_Regular.ttf */,
-				39329284631946E8BB321B88 /* FontAwesome5_Solid.ttf */,
-				12ECF92E3D2843FCB3415B07 /* Fontisto.ttf */,
-				9AC5B22005B944769235FD76 /* Foundation.ttf */,
-				03FF3BA8D4A8485E966CF1D3 /* Ionicons.ttf */,
-				FD6E30ECE3144DAE9668A160 /* MaterialCommunityIcons.ttf */,
-				6DCA591F4F3E4FECB986C152 /* MaterialIcons.ttf */,
-				2DFADE45B4A3419E9B3F012F /* Octicons.ttf */,
-				EE90DCB2E70A40C0A01ED951 /* SimpleLineIcons.ttf */,
-				62EEA1C563BA4D7A8530D603 /* Zocial.ttf */,
-				0C5393773B374AB58B925DB1 /* Almarai-ExtraBold.ttf */,
-				69131BDECA5F4E87B590677D /* Almarai-Light.ttf */,
-				FF08162B530A41F4B0EA2B96 /* Almarai-Regular.ttf */,
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				1EAB184A0310D35E8DB821A2 /* libPods-RAGHWA.a */,
+				C920CA1877BA7E4DAAEB4F70 /* libPods-RAGHWA-RAGHWATests.a */,
 			);
-			name = Resources;
-			path = "";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -201,8 +133,7 @@
 				00E356EF1AD99517003FC87E /* RAGHWATests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				45ABA64833338988D86C534F /* Pods */,
-				484BE71592FC415CA240E1CC /* Resources */,
+				267B6AA8883B50208702C878 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -225,12 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RAGHWATests" */;
 			buildPhases = (
-				F0F1DECF3F157D7F603D4E5D /* [CP] Check Pods Manifest.lock */,
+				FF1956FEB52CA5A2556C125C /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				07A8A220AAAF62AF2562CCD6 /* [CP] Embed Pods Frameworks */,
-				F85091E059AA17BD39F24334 /* [CP] Copy Pods Resources */,
+				A9999964B7EEA3124646377C /* [CP] Embed Pods Frameworks */,
+				59263E7242B62597ED5791C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,14 +177,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RAGHWA" */;
 			buildPhases = (
-				371FE917E1828D0D480D3765 /* [CP] Check Pods Manifest.lock */,
+				6313CA76F8B5DDE1CA5CC32E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				933696E66CF0E51AD03AC481 /* [CP] Embed Pods Frameworks */,
-				8A999030A7D334BF721193D6 /* [CP] Copy Pods Resources */,
+				9D7B65E610A03F2A1A4EBB0B /* [CP] Embed Pods Frameworks */,
+				9ACC28CF4E6CEFFCEDDF2697 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -314,26 +245,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				454F8819F13B46639F630775 /* Almarai-Bold.ttf in Resources */,
-				A60EF1A8A53D437FAC5AEE25 /* AntDesign.ttf in Resources */,
-				BC3C4F40E4E842FD9C097A63 /* Entypo.ttf in Resources */,
-				5F47AE6CD0564C39A3AAF6A2 /* EvilIcons.ttf in Resources */,
-				4B7BC7357CCC40ABAF8C3C38 /* Feather.ttf in Resources */,
-				E5163F36D2574B3BB47A1EA5 /* FontAwesome.ttf in Resources */,
-				F033441A443042B1874316E6 /* FontAwesome5_Brands.ttf in Resources */,
-				AF4136F2ABC04EAFAA52B8B6 /* FontAwesome5_Regular.ttf in Resources */,
-				62BEB10F14C1497887BCF9BA /* FontAwesome5_Solid.ttf in Resources */,
-				6A88D52E88DA414F88574266 /* Fontisto.ttf in Resources */,
-				C2950B3A126D4C03983A4BE6 /* Foundation.ttf in Resources */,
-				438DC40BBB8E4190A9FD9B36 /* Ionicons.ttf in Resources */,
-				717B9DB60B874C64B3936BC4 /* MaterialCommunityIcons.ttf in Resources */,
-				9FF32B5900034A43AB394E79 /* MaterialIcons.ttf in Resources */,
-				AB881FAB687944079D395CB5 /* Octicons.ttf in Resources */,
-				CBEC87795B3F44C4952046B6 /* SimpleLineIcons.ttf in Resources */,
-				79BA1357C67E4A408C309089 /* Zocial.ttf in Resources */,
-				9E12E2CC3E6C4E759C3E303D /* Almarai-ExtraBold.ttf in Resources */,
-				45EB2418A00E4D96B8168C95 /* Almarai-Light.ttf in Resources */,
-				940C8FD81DA84468A81C8662 /* Almarai-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,24 +265,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		07A8A220AAAF62AF2562CCD6 /* [CP] Embed Pods Frameworks */ = {
+		59263E7242B62597ED5791C7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		371FE917E1828D0D480D3765 /* [CP] Check Pods Manifest.lock */ = {
+		6313CA76F8B5DDE1CA5CC32E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -393,7 +304,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8A999030A7D334BF721193D6 /* [CP] Copy Pods Resources */ = {
+		9ACC28CF4E6CEFFCEDDF2697 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -410,7 +321,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RAGHWA/Pods-RAGHWA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		933696E66CF0E51AD03AC481 /* [CP] Embed Pods Frameworks */ = {
+		9D7B65E610A03F2A1A4EBB0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -427,43 +338,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RAGHWA/Pods-RAGHWA-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F0F1DECF3F157D7F603D4E5D /* [CP] Check Pods Manifest.lock */ = {
+		A9999964B7EEA3124646377C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RAGHWA-RAGHWATests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F85091E059AA17BD39F24334 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RAGHWA-RAGHWATests/Pods-RAGHWA-RAGHWATests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -483,6 +372,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FF1956FEB52CA5A2556C125C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RAGHWA-RAGHWATests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -518,7 +429,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B0F52AA8216D0BA2BAFE1B2 /* Pods-RAGHWA-RAGHWATests.debug.xcconfig */;
+			baseConfigurationReference = 16D5EF1EB6676A4D9E57EB6E /* Pods-RAGHWA-RAGHWATests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -545,7 +456,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18072C393DE5ACBB9894617A /* Pods-RAGHWA-RAGHWATests.release.xcconfig */;
+			baseConfigurationReference = CBCBD3292391AECCE6929F0F /* Pods-RAGHWA-RAGHWATests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -569,7 +480,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9169E5106AB96C1A4B79E6D /* Pods-RAGHWA.debug.xcconfig */;
+			baseConfigurationReference = 44EF9DC6ADEE25AD0943174C /* Pods-RAGHWA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -595,7 +506,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6500DA5FA72716C3EC0DDC3 /* Pods-RAGHWA.release.xcconfig */;
+			baseConfigurationReference = C8EA8A6EDB138736990FDF64 /* Pods-RAGHWA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

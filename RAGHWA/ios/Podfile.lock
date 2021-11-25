@@ -275,15 +275,16 @@ PODS:
   - React-jsinspector (0.66.2)
   - React-logger (0.66.2):
     - glog
-  - react-native-maps (0.29.3):
-    - React-Core
-  - react-native-mmkv (1.5.3):
-    - MMKV
+  - react-native-geolocation-service (5.3.0-beta.3):
+    - React
+  - react-native-maps (0.29.4):
     - React-Core
   - react-native-mmkv-storage (0.6.6):
     - MMKV (= 1.2.10)
     - React-Core
   - react-native-pager-view (5.4.8):
+    - React-Core
+  - react-native-restart (0.0.22):
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
@@ -435,10 +436,11 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-maps (from `../node_modules/react-native-maps`)
-  - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - react-native-mmkv-storage (from `../node_modules/react-native-mmkv-storage`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
+  - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -513,14 +515,16 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-geolocation-service:
+    :path: "../node_modules/react-native-geolocation-service"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
-  react-native-mmkv:
-    :path: "../node_modules/react-native-mmkv"
   react-native-mmkv-storage:
     :path: "../node_modules/react-native-mmkv-storage"
   react-native-pager-view:
     :path: "../node_modules/react-native-pager-view"
+  react-native-restart:
+    :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -593,10 +597,11 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 573adf0d6ce5e05c55872dfde5b1589acb88a96f
   React-jsinspector: b08b2d5e86cef9dc4bb69f0aa0bbe6d210fb7da5
   React-logger: faee236598b0f7e1a5e3b68577016ac451f1f993
-  react-native-maps: 41d01d8e0afcebe32bec9eea3bd945adc1b18f7a
-  react-native-mmkv: 0497c1c7439893e9b4fcf0e0c398e8ad0522d9da
+  react-native-geolocation-service: 32e50a2e4e4518b51b829fdfe137562a672d95d2
+  react-native-maps: a421fe6aeb74279597c4ea9598f25796108e2d89
   react-native-mmkv-storage: 91de1230f51648ab53b8d994b2d73d83cf9d53e8
   react-native-pager-view: de4561910a6f61c01e6fd91165bd033a47418865
+  react-native-restart: d4ea7637e193da7558d229b3704d500ec0d75f9c
   react-native-safe-area-context: 5cf05f49df9d17261e40e518481f2e334c6cd4b5
   React-perflogger: 5ab487cacfe6ec19bfe3d3f8072bf71eb07d63da
   React-RCTActionSheet: 03f25695e095fb5aa003828620943c74cc281fec
@@ -618,6 +623,6 @@ SPEC CHECKSUMS:
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 75a36ecc68d9834713fa27bfda998dbd65ac0475
+PODFILE CHECKSUM: 38fea369b06d0f1150b198de67485eb901765822
 
 COCOAPODS: 1.11.2

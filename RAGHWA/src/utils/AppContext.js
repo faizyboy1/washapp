@@ -1,6 +1,7 @@
 import React, {createContext, useState} from 'react';
 import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
+
 // import i18n from 'i18n-js';
 import en from '../locals/en.json';
 import ar from '../locals/ar.json';

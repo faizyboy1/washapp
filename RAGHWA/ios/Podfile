@@ -4,9 +4,6 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 
 target 'RAGHWA' do
-# React Native Maps dependencies
-rn_maps_path = '../node_modules/react-native-maps'
-pod 'react-native-google-maps', :path => rn_maps_path
   config = use_native_modules!
 
   use_react_native!(
@@ -14,7 +11,6 @@ pod 'react-native-google-maps', :path => rn_maps_path
     # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
-
 
   target 'RAGHWATests' do
     inherit! :complete
