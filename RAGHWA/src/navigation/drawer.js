@@ -6,15 +6,13 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
-// import i18n from '../locals/index';
 import Home from '../screens/home';
-import Terms from '../screens/terms';
+import Terms from '../screens/Terms';
 import TellFriend from '../screens/Share';
 import Records from './tabs';
 import Cars from '../screens/cars';
 import {AppContext} from '../utils/AppContext';
 import {useTranslation} from 'react-i18next';
-// import {LanguageDirectionContext} from '../components/context/language-context';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import {Center, Image} from 'native-base';
 import {useAuthRequest} from '../utils/useRequest';

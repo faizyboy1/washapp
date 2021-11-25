@@ -14,20 +14,19 @@ import {useTranslation} from 'react-i18next';
 import {request} from '../../utils/useRequest';
 import {AppContext} from '../../utils/AppContext';
 
-export default ({couponDiscount, setCouponDiscount}) => {
+export default ({couponDiscount, setCouponDiscount, coupon, setCoupon}) => {
   const {t} = useTranslation();
   const {isOpen, onOpen, onClose} = useDisclose();
   const initialFocusRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const {tokenHeader, setToken} = useContext(AppContext);
-  const [code, setCode] = useState(null);
   const verify = () => {
     setLoading(true);
 
     const params = {
       ...tokenHeader,
       ...{
-        url: `coupons/check/${code}`,
+        url: `coupons/check/${coupon}`,
       },
     };
     request(params)
@@ -69,15 +68,21 @@ export default ({couponDiscount, setCouponDiscount}) => {
           <Popover.Body>
             <FormControl>
               <Input
-                value={code}
-                onChangeText={value => setCode(value)}
+                value={coupon}
+                onChangeText={value => setCoupon(value)}
                 rounded="sm"
                 fontSize="xs"
                 backgroundColor="white"
                 ref={initialFocusRef}
               />
             </FormControl>
-            {couponDiscount && <Text mt={3}>{couponDiscount}</Text>}
+            {couponDiscount && (
+              <Text mt={3} color={'#cb3e3e'}>
+                {typeof couponDiscount === 'number'
+                  ? t('Congrats for') + ': ' + couponDiscount + '%'
+                  : 0}
+              </Text>
+            )}
           </Popover.Body>
           <Popover.Footer justifyContent="flex-end">
             <Button.Group space={2}>
@@ -85,7 +90,7 @@ export default ({couponDiscount, setCouponDiscount}) => {
                 {t('Cancel')}
               </Button>
               <Button
-                isDisabled={loading || !code}
+                isDisabled={loading || !coupon}
                 colorScheme="success"
                 onPress={() => verify()}>
                 {t('Apply')}

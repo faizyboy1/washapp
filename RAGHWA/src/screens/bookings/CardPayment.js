@@ -52,7 +52,7 @@ export default ({amount, navigation}) => {
           <Input
             // variant="underlined"
             // size="0.5"
-            w={20}
+            w={32}
             keyboardType={'number-pad'}
             placeholder={t('Month')}
             onChangeText={value => setExpiredMonth(value)}

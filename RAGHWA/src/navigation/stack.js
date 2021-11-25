@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Terms from '../screens/terms';
+import Terms from '../screens/Terms';
 import Drawer from './drawer';
 import Cars from '../screens/cars';
 import CarForm from '../screens/cars/form';
 import Login from '../screens/auth/Login';
-import Register from '../screens/auth/register';
+import Register from '../screens/auth/Register';
 import OnBoarding from '../screens/Onboarding';
 import ConfirmBooking from '../screens/bookings/confirm';
 import {AppContext} from '../utils/AppContext';

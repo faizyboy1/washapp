@@ -48,14 +48,16 @@ export const AppContext = createContext(null);
 export const AppProvider = ({children}) => {
   const [user, setUser] = useStorage('user');
   const [FCMToken, setFCMToken] = useStorage('FCMToken');
-  const token = user?.token;
-  const tokenHeader = {headers: {Authorization: `Bearer ${token}`}};
+  let token = user?.token;
   const setToken = newValue => {
+    token = newValue;
     setUser(u => {
       u.token = newValue;
       return u;
     });
   };
+  const tokenHeader = {headers: {Authorization: `Bearer ${token}`}};
+
   // let [token, setToken] = useStorage('user', null);
   let [onboarding, setOnboarding] = useStorage('onboarding');
   const [isLoading, setIsLoading] = useState(true);

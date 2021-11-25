@@ -58,7 +58,6 @@ export default function Home({navigation}) {
 
     // checked if the car is selected
     // checked if the slots is selected
-
     navigation.navigate('Book', {car, slot, region});
   };
 
