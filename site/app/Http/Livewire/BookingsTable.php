@@ -9,8 +9,8 @@ use App\Models\Coupon;
 
 class BookingsTable extends DataTableComponent
 {
-
-    public $createEnabled = true;
+    public bool $columnSelect = true;
+    public $createEnabled = false;
 // To show/hide the modal
     public bool $viewingModal = false;
 

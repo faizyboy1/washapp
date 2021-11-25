@@ -10,6 +10,7 @@ use App\Models\Coupon;
 class CouponTable extends DataTableComponent
 {
 
+    public bool $columnSelect = true;
     public $createEnabled = true;
 // To show/hide the modal
     public bool $viewingModal = false;

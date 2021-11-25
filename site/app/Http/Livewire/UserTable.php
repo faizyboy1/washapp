@@ -10,6 +10,8 @@ use App\Models\User;
 
 class UserTable extends DataTableComponent
 {
+    public bool $columnSelect = true;
+
     public function columns(): array
     {
         return [
