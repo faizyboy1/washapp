@@ -22,7 +22,6 @@ class BookingsTable extends DataTableComponent
         return [
             Column::make('ID', 'id')->searchable()->selected(),
             Column::make('Status', 'status.name')->searchable()->selected(),
-            Column::make('Booked On', 'booked_at'),
             Column::make('Started On', 'started_at'),
             Column::make('Finished On', 'finished_at'),
             Column::make('Amount (Inc. VAT)', 'total_amount')->selected(),
@@ -38,9 +37,9 @@ class BookingsTable extends DataTableComponent
 
     // Confirmed, Cancelled, Finished, Posted
     public array $bulkActions = [
-    'setDone' => 'Change to Done',
-    'setCancel' => 'Change to Cancel',
-    'setConfirm' => 'Change To Confirm',
+        'setDone' => 'Change to Finished',
+        'setCancel' => 'Change to Cancel',
+        'setConfirm' => 'Change To Confirm',
     ];
 
 

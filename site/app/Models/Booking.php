@@ -59,7 +59,7 @@ class Booking extends Model
         $amount = $this->services()->sum("{$priceType}_price");
 
         if ($couponDiscount) {
-            $this->discount = $amount - ($amount * ($couponDiscount / 100));
+            $this->discount = $amount * ($couponDiscount / 100);
         }
         $this->amount = $amount - $this->discount;
 
