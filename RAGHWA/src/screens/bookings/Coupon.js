@@ -51,21 +51,21 @@ export default ({couponDiscount, setCouponDiscount, coupon, setCoupon}) => {
   return (
     <Box px="3">
       {/*<Box h="60%" w="100%" alignItems="center">*/}
-      <Popover
-        initialFocusRef={initialFocusRef}
-        isOpen={isOpen}
-        onClose={onClose}
-        trigger={triggerProps => {
-          return (
-            <Button {...triggerProps} onPress={onOpen} colorScheme="info">
-              {t('Coupon')}
-            </Button>
-          );
-        }}>
-        <Popover.Content w="56">
-          <Popover.Arrow />
-          <Popover.Header>{t('Apply Coupon')}</Popover.Header>
-          <Popover.Body>
+      {/*<Popover*/}
+      {/*  initialFocusRef={initialFocusRef}*/}
+      {/*  isOpen={isOpen}*/}
+      {/*  onClose={onClose}*/}
+      {/*  trigger={triggerProps => {*/}
+      {/*    return (*/}
+      {/*      <Button {...triggerProps} onPress={onOpen} colorScheme="info">*/}
+      {/*        {t('Coupon')}*/}
+      {/*      </Button>*/}
+      {/*    );*/}
+      {/*  }}>*/}
+      {/*  <Popover.Content w="56">*/}
+      {/*    <Popover.Arrow />*/}
+      {/*    <Popover.Header>{t('Apply Coupon')}</Popover.Header>*/}
+      {/*    <Popover.Body>*/}
             <FormControl>
               <Input
                 value={coupon}
@@ -83,22 +83,22 @@ export default ({couponDiscount, setCouponDiscount, coupon, setCoupon}) => {
                   : 0}
               </Text>
             )}
-          </Popover.Body>
-          <Popover.Footer justifyContent="flex-end">
-            <Button.Group space={2}>
-              <Button colorScheme="coolGray" variant="ghost" onPress={onClose}>
-                {t('Cancel')}
-              </Button>
+      {/*    </Popover.Body>*/}
+      {/*    <Popover.Footer justifyContent="flex-end">*/}
+      {/*      <Button.Group space={2}>*/}
+      {/*        <Button colorScheme="coolGray" variant="ghost" onPress={onClose}>*/}
+      {/*          {t('Cancel')}*/}
+      {/*        </Button>*/}
               <Button
                 isDisabled={loading || !coupon}
                 colorScheme="success"
                 onPress={() => verify()}>
-                {t('Apply')}
+                {t('Apply Coupon')}
               </Button>
-            </Button.Group>
-          </Popover.Footer>
-        </Popover.Content>
-      </Popover>
+      {/*      </Button.Group>*/}
+      {/*    </Popover.Footer>*/}
+      {/*  </Popover.Content>*/}
+      {/*</Popover>*/}
       {/*</Box>*/}
     </Box>
   );
