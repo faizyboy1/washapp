@@ -8,7 +8,8 @@ import {
   FormControl,
   Input,
   Toast,
-  Text,
+  Text, VStack, HStack,
+  Radio, Flex,
 } from 'native-base';
 import {useTranslation} from 'react-i18next';
 import {request} from '../../utils/useRequest';
@@ -49,57 +50,39 @@ export default ({couponDiscount, setCouponDiscount, coupon, setCoupon}) => {
   };
 
   return (
-    <Box px="3">
-      {/*<Box h="60%" w="100%" alignItems="center">*/}
-      {/*<Popover*/}
-      {/*  initialFocusRef={initialFocusRef}*/}
-      {/*  isOpen={isOpen}*/}
-      {/*  onClose={onClose}*/}
-      {/*  trigger={triggerProps => {*/}
-      {/*    return (*/}
-      {/*      <Button {...triggerProps} onPress={onOpen} colorScheme="info">*/}
-      {/*        {t('Coupon')}*/}
-      {/*      </Button>*/}
-      {/*    );*/}
-      {/*  }}>*/}
-      {/*  <Popover.Content w="56">*/}
-      {/*    <Popover.Arrow />*/}
-      {/*    <Popover.Header>{t('Apply Coupon')}</Popover.Header>*/}
-      {/*    <Popover.Body>*/}
-            <FormControl>
+      <Flex my={3}>
+        <HStack>
               <Input
                 value={coupon}
                 onChangeText={value => setCoupon(value)}
                 rounded="sm"
                 fontSize="xs"
                 backgroundColor="white"
+                mx="3"
+                placeholder=""
+                w={{
+                  base: "60%",
+                  md: "60%",
+                }}
                 ref={initialFocusRef}
               />
-            </FormControl>
-            {couponDiscount && (
-              <Text mt={3} color={'#cb3e3e'}>
-                {typeof couponDiscount === 'number'
-                  ? t('Congrats for') + ': ' + couponDiscount + '%'
-                  : 0}
-              </Text>
-            )}
-      {/*    </Popover.Body>*/}
-      {/*    <Popover.Footer justifyContent="flex-end">*/}
-      {/*      <Button.Group space={2}>*/}
-      {/*        <Button colorScheme="coolGray" variant="ghost" onPress={onClose}>*/}
-      {/*          {t('Cancel')}*/}
-      {/*        </Button>*/}
               <Button
+                  size="sm" variant="outline"
                 isDisabled={loading || !coupon}
                 colorScheme="success"
                 onPress={() => verify()}>
                 {t('Apply Coupon')}
               </Button>
-      {/*      </Button.Group>*/}
-      {/*    </Popover.Footer>*/}
-      {/*  </Popover.Content>*/}
-      {/*</Popover>*/}
-      {/*</Box>*/}
-    </Box>
+        </HStack>
+      <HStack mx={3}>
+        {couponDiscount && (
+
+              typeof couponDiscount === 'number' ? <Text mt={3} color={'#4bc02b'}>
+                          {t('Congrats for') + ': ' + couponDiscount + '%'}</Text>
+                      :
+                      <Text mt={3} color={'#cb3e3e'}> {t('Sorry, the entered code is invalid or expired')}</Text>
+        )}
+      </HStack>
+      </Flex>
   );
 };

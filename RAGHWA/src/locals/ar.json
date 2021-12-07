@@ -26,6 +26,25 @@
   "Login": "تسجيل الدخول",
   "Something went wrong": "هناك خطأ",
   "Error": "خطأ",
-  "Book": "حجز"
+  "Book": "حجز",
+  "Congrats for": "تهانينا على خصم ",
+  "Sorry, the entered code is invalid or expired": "عذراً الكود المستخدم غير صالح أو منتهي",
+  "Apply Coupon": "تطبيق الخصم",
+  "Confirm & Pay": "تأكيد ودفع",
+  "Confirm": "تأكيد",
+  "Cash": "عند الاستلام",
+  "Card": "أون لاين",
+  "Total": "السعر",
+  "VAT": "القيمة المضافة",
+  "Total Amount": "السعر الإجمالي",
+  "Holder Name": "اسم صاحب البطاقة",
+  "Card Number": "",
+  "CVV": "CVV",
+  "Month": "الشهر",
+  "Year": "السنة",
+  "Main Service": "الخدمات الرئيسية",
+  "Raghwa Extra Service": "خدمات رغوة الإضافية",
+  "Raghwa Freshener": "معطر جو",
+  "Raghwa Tissue": ""
 
 }
