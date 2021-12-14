@@ -8,7 +8,7 @@ import CarForm from '../screens/cars/form';
 import Login from '../screens/auth/Login';
 import Register from '../screens/auth/Register';
 import OnBoarding from '../screens/Onboarding';
-import ConfirmBooking from '../screens/bookings/confirm';
+import Washer from '../screens/bookings/Washer';
 import {AppContext} from '../utils/AppContext';
 import Book from '../screens/bookings/Create';
 import {Text, View} from 'native-base';
@@ -46,7 +46,6 @@ export default () => {
   const {token, user, onboarding} = useContext(AppContext);
   const {t} = useTranslation();
   const renderScreens = () => {
-    console.log('from drawer', token);
 
     if (!token) {
       return (
@@ -78,14 +77,13 @@ export default () => {
     }
 
     // return <Home />;
-    const isWasher = false; //@todo needs to be fetch from storage/api
-    if (isWasher) {
+    if (user.is_washer) {
       return (
         <>
           <Stack.Screen
             name="ConfirmBooking"
             options={{...options, title: t('Washer')}}
-            component={ConfirmBooking}
+            component={Washer}
           />
         </>
       );
@@ -97,7 +95,7 @@ export default () => {
           component={Drawer}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="CarForm" component={CarForm} />
+        <Stack.Screen name="CarForm" component={CarForm} options={{...options, title: t('Car Form')}} />
 
         <Stack.Screen
           name="Cars"
@@ -109,7 +107,7 @@ export default () => {
           options={{...options, title: t('Book')}}
           component={Book}
         />
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Login} options={{...options, title: t('Login'), headerShown: false}} />
       </>
     );
   };
