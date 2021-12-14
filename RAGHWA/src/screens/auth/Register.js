@@ -4,7 +4,7 @@ import {
   Button,
   Center,
   Checkbox,
-  FormControl,
+  FormControl, HStack,
   Image,
   Input,
   Link,
@@ -44,9 +44,22 @@ export default function register({navigation}) {
   const {FCMToken, setToken, setUser} = useContext(AppContext);
   const toast = useToast();
   const {t} = useTranslation();
+  const [isAgreed, setAgreed] = useState(false);
 
   const register = () => {
     // @todo validate data
+    if(!isAgreed) {
+      toast.show({
+        status: 'error',
+        description: t('Please Agree to terms & conditions'),
+        title: t('Something went wrong'),
+      });
+      return
+    }
+
+    if (!name.length || !phone.length || !password.length) {
+      return
+    }
 
     let data = {
       name: name, //Saleh
@@ -57,7 +70,6 @@ export default function register({navigation}) {
     };
 
     //console.log(data);
-
     request({
       url: '/register',
       method: 'post',
@@ -156,18 +168,19 @@ export default function register({navigation}) {
                 }
               />
             </FormControl>
-            <Checkbox size="sm" value="tnc" mt="10">
-              <Text>
-                {' '}
-                I agree to{' '}
-                <Link
-                  onPress={() => navigation.navigate('Terms and Conditions')}
-                  _text={{color: 'blue.400'}}
-                  mt={-0.5}
-                  href="">
-                  Terms and Conditions
-                </Link>{' '}
+            <Checkbox size="sm"  mt="10" value={isAgreed} onChange={setAgreed}>
+
+              <Text alignItems={'center'}>
+                {t(' I agree to ')}
               </Text>
+              <Link
+                  onPress={() => navigation.navigate('Terms and Conditions')}
+                  _text={{color: 'blue.500'}}
+
+                  href="">
+                {t('Terms and Conditions')}
+
+              </Link>
             </Checkbox>
             <Text>
               {' '}
@@ -175,7 +188,7 @@ export default function register({navigation}) {
                 _text={{color: 'blue.500'}}
                 mt={-0.5}
                 onPress={() => navigation.navigate('Login')}>
-                Already Have an Account?
+                {t('Already Have an Account?')}
               </Link>{' '}
             </Text>
           </VStack>
