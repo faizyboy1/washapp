@@ -20,7 +20,7 @@ Route::post('register', [\App\Http\Controllers\Api\AuthController::class, 'regis
 Route::post('verify', [\App\Http\Controllers\Api\AuthController::class, 'verify']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     Route::post('logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
     Route::post('refreshFCM', [\App\Http\Controllers\Api\AuthController::class, 'refreshFCM']);
     Route::get('/user', [\App\Http\Controllers\Api\AuthController::class, 'user']);
@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('addresses', \App\Http\Controllers\Api\AddressController::class);
 
+    Route::post('bookings/status/{booking}', [\App\Http\Controllers\Api\BookingController::class, 'setStatus']);
     Route::get('bookings/slots', [\App\Http\Controllers\Api\BookingController::class, 'slots']);
     Route::apiResource('bookings', \App\Http\Controllers\Api\BookingController::class);
 

@@ -152,15 +152,27 @@ class BookingController extends Controller
 
     }
 
-    public function setStatus(Booking $booking)
+    public function setStatus(Request $request, Booking $booking)
     {
+        $assignedToTheWasher = $booking->washer->id == auth()->user()->id;
+        abort_if(!$assignedToTheWasher, 403); //todo needs to be replaced with gates
 
+        if ($request->is_started) {
+            $booking->started_at = now();
+        }
+
+        if ($request->is_finished) {
+            $booking->finished_at = now();
+        }
+
+        if ($request->input('status')) {
+            $booking->booking_status_id = $request->input('status');
+        }
+
+        $booking->save();
+        return $booking;
     }
 
-    public function getStatus(Booking $booking)
-    {
-
-    }
 
     public function slots()
     {

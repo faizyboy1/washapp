@@ -26,7 +26,7 @@ class Booking extends Model
 
     protected $dates = ['booking_date'];
 
-    protected $with = ['payment_method', 'status', 'services', 'slot', 'car'];
+    protected $with = ['payment_method', 'status', 'services', 'slot', 'car','client'];
 
     public function washer()
     {
