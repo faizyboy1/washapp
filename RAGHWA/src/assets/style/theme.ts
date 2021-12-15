@@ -38,7 +38,13 @@ export const customTheme = extendTheme({
         mono: 'Almarai',
     },
     components: {
-
+        Button: {
+            baseStyle: {
+                _text: {
+                    fontFamily: "body",
+                },
+            }
+        },
         Text: {
             baseStyle: {
                 fontFamily: "body",

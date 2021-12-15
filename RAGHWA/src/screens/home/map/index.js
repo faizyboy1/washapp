@@ -10,6 +10,7 @@ import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import isEqual from 'lodash/isEqual';
 import {Box, Text, View} from 'native-base';
 import Geolocation from 'react-native-geolocation-service';
+import Search from "./Search";
 
 export default ({region, setRegion}) => {
   useEffect(() => {
@@ -77,6 +78,7 @@ export default ({region, setRegion}) => {
       {/*    placeholderTextColor={'#666'}*/}
       {/*  />*/}
       {/*</View>*/}
+      <Search/>
       <MapView
         style={{flex: 1}}
         provider={PROVIDER_GOOGLE}

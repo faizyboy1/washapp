@@ -24,7 +24,7 @@ export const CarModal = ({showModal, setShowModal, setCar}) => {
   const [type, setType] = useState(null);
   const [color, setColor] = useState(null);
   const [plateNumber, setPlateNumber] = useState(null);
-  const {tokenHeader} = useContext(AppContext);
+  const {tokenHeader,setUser,user} = useContext(AppContext);
 
   const submit = () => {
     const data = {
@@ -48,6 +48,11 @@ export const CarModal = ({showModal, setShowModal, setCar}) => {
           status: 'success',
         });
         setCar(response.data);
+        if (!user.cars?.length) {
+          user.cars = [];
+        }
+        user.cars.push(response.data);
+        setUser(user);
       })
       .catch(error => alert(error));
   };
@@ -135,14 +140,14 @@ export const CarModal = ({showModal, setShowModal, setCar}) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                Cancel
+                {t('Cancel')}
               </Button>
               <Button
                 onPress={() => {
                   submit();
                   setShowModal(false);
                 }}>
-                Save
+                {t('Save')}
               </Button>
             </Button.Group>
           </Modal.Footer>

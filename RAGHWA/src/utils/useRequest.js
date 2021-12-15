@@ -5,76 +5,95 @@ import {useNavigation} from '@react-navigation/native';
 import {fetch} from 'react-native/Libraries/Network/fetch';
 import {AppContext} from './AppContext';
 import React from 'react';
+import {Toast} from "native-base";
 
 axios.defaults.baseURL = 'https://wash.cm.codes/api';
 
 axios.defaults.headers = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
 };
 
 export const useRequest = (axiosParams = null) => {
-  const [response, setResponse] = useState(undefined);
-  const [params, setParams] = useState(axiosParams);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+    const [response, setResponse] = useState(undefined);
+    const [params, setParams] = useState(axiosParams);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
-  // const [params, setParams] = useState(axiosParams);
+    // const [params, setParams] = useState(axiosParams);
 
-  const fetchData = async parameters => {
-    try {
-      const result = await axios.request(parameters);
-      // needs to update storage & and needs to re-fetch the items
+    const fetchData = async parameters => {
+        try {
+            const result = await axios.request(parameters);
+            // needs to update storage & and needs to re-fetch the items
 
-      setResponse(result.data);
-      // if (['post', 'put', 'delete'].includes(parameters.method)) {
-      //   FetchUserDetails();
-      // }
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+            setResponse(result.data);
+            // if (['post', 'put', 'delete'].includes(parameters.method)) {
+            //   FetchUserDetails();
+            // }
+        } catch (error) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  useEffect(() => {
-    if (params?.url) {
-      setLoading(true);
-      fetchData(params);
-    }
-  }, [params]);
+    useEffect(() => {
+        if (params?.url) {
+            setLoading(true);
+            fetchData(params);
+        }
+    }, [params]);
 
-  return {response, error, loading, setParams};
+    return {response, error, loading, setParams};
 };
 
 export const useAuthRequest = axiosParams => {
-  const {token} = useContext(AppContext);
-  const navigation = useNavigation();
+    const {token} = useContext(AppContext);
+    const navigation = useNavigation();
 
-  axiosParams = {
-    ...axiosParams,
-    ...{headers: {Authorization: `Bearer ${token}`}},
-  };
-  const results = useRequest(axiosParams);
+    axiosParams = {
+        ...axiosParams,
+        ...{headers: {Authorization: `Bearer ${token}`}},
+    };
+    const results = useRequest(axiosParams);
 
-  // const {error} = results;
-  // if (error.response?.status == 401) {
-  //   console.log('auto-logout');
-  //   setToken(null);
-  //   navigation.navigate('Login');
-  // }
+    // const {error} = results;
+    // if (error.response?.status == 401) {
+    //   console.log('auto-logout');
+    //   setToken(null);
+    //   navigation.navigate('Login');
+    // }
 
-  return results;
+    return results;
 };
 
 export const FetchUserDetails = () => {
-  // const [user, setUser] = useStorage('user');
-  // const {response} = useAuthRequest({url: '/user'});
-  // setUser(response);
+    // const [user, setUser] = useStorage('user');
+    // const {response} = useAuthRequest({url: '/user'});
+    // setUser(response);
+};
+
+export const useRefreshUserDetails = () => {
+const [user, setUser,tokenHeader] = useContext(AppContext);
+
+  const params = {
+    ...tokenHeader,
+    ...{
+      method: 'get',
+      url: `/user`,
+    },
+  };
+
+  return request(params)
+      .then(response => setUser(response.data))
+      .catch(error => alert(error));
+    // const {response} = useAuthRequest({url: '/user'});
+    // setUser(response);
 };
 
 export const request = params => {
-  return axios.request(params);
+    return axios.request(params);
 };
 
 // export const authRequest = () => {
