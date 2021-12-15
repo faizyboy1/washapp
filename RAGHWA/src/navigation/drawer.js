@@ -36,6 +36,7 @@ export default function DrawerNavigator({navigation}) {
     fontFamily: 'Almarai-Bold',
     // color: '#0d5e5c',
     fontWeight: '600',
+    textAlign: 'left'
     // fontStyle: 'normal',
   };
 
@@ -59,6 +60,7 @@ export default function DrawerNavigator({navigation}) {
       fontFamily: 'Almarai-Bold',
       // color: '#0d5e5c',
       fontWeight: '600',
+      textAlign: 'left'
       // fontStyle: 'normal',
     },
   };
@@ -141,7 +143,7 @@ export default function DrawerNavigator({navigation}) {
               </Center>
               <DrawerItemList {...props} />
               <DrawerItem
-                labelStyle={(fontStyle, {textAlign: 'left'})}
+                labelStyle={(fontStyle)}
                 label={t('language')}
                 onPress={() => toggleLanguage()}
                 icon={({focused}) => (

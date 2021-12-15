@@ -11,9 +11,7 @@ import OnBoarding from '../screens/Onboarding';
 import ConfirmBooking from '../screens/bookings/confirm';
 import {AppContext} from '../utils/AppContext';
 import Book from '../screens/bookings/Create';
-import {Text, View} from 'native-base';
 import {useTranslation} from 'react-i18next';
-import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 
 const Stack = createNativeStackNavigator();
 
