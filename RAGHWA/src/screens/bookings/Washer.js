@@ -1,96 +1,62 @@
-import React from "react"
-import {
-    Box,
-    FlatList,
-    Heading,
-    HStack,
-    VStack,
-    Text,
-    Spacer,
-    Center,
-    NativeBaseProvider,
-} from "native-base"
-export const Example = () => {
-    const data = [
-        {
-            id: "",
-            fullName: "Aafreen Khan",
-            timeStamp: "12:47 PM",
-            recentText: "",
+import React, {useContext} from "react"
+import {Box, FlatList, HStack, Text, VStack,} from "native-base"
+import {AppContext} from "../../utils/AppContext";
+import Icon from "react-native-vector-icons/dist/FontAwesome5";
+import {globalStyles} from "../../assets/style/global-styling";
+import {useNavigation} from "@react-navigation/native";
 
-        },
+export default () => {
 
-    ]
-    return (
-        <Box
-            w={{
-                base: "100%",
-                md: "25%",
-            }}
-        >
-            <Heading fontSize="xl" p="4" pb="3">
-                Inbox
-            </Heading>
+    const {user} = useContext(AppContext);
+    const navigator = useNavigation()
+    const renderBookings = () => {
+
+        if (!user.washer_bookings?.length) return;
+
+        return (
+
             <FlatList
-                data={data}
-                renderItem={({ item }) => (
+                data={user.washer_bookings}
+                renderItem={({item}) => (
                     <Box
                         borderBottomWidth="1"
                         _dark={{
                             borderColor: "gray.600",
                         }}
-                        borderColor="coolGray.200"
+                        borderColor="coolGray.400"
                         pl="4"
                         pr="5"
                         py="2"
+                        flexDirection="row" alignItems='center' justifyContent="space-between" p={3}
                     >
-                        <HStack space={3} justifyContent="space-between">
 
-                            <VStack>
-                                <Text
-                                    _dark={{
-                                        color: "warmGray.50",
-                                    }}
-                                    color="coolGray.800"
-                                    bold
-                                >
-                                    {item.fullName}
-                                </Text>
-                                <Text
-                                    color="coolGray.600"
-                                    _dark={{
-                                        color: "error.500",
-                                    }}
-                                >
-                                    {item.recentText}
-                                </Text>
-                            </VStack>
-                            <Spacer />
-                            <Text
-                                fontSize="xs"
-                                _dark={{
-                                    color: "warmGray.50",
-                                }}
-                                color="coolGray.800"
-                                alignSelf="flex-start"
-                            >
-                                {item.timeStamp}
-                            </Text>
-                        </HStack>
-                    </Box>
+                    <HStack alignItems='center' space={4}>
+                        <Text fontSize={20}> #{item.id}</Text>
+                        <VStack>
+                        <Text> {item.slot.slot_date}</Text>
+                        <Text> {item.slot.name}</Text>
+
+                        </VStack>
+                        <Text>
+                            {item.status.name}
+                        </Text>
+                    </HStack>
+                        <Icon size={20} name="edit" style={globalStyles.rescheduleIcon}
+                              onPress={() => navigator.navigate('Details',item)}/>
+                        </Box>
+
                 )}
                 keyExtractor={(item) => item.id}
             />
-        </Box>
-    )
-}
 
-export default () => {
+        )
+
+        // });
+    }
+
     return (
-        <NativeBaseProvider>
-            <Center flex={1} px="3">
-                <Example />
-            </Center>
-        </NativeBaseProvider>
+        <Box flex={1} px="3">
+            {renderBookings()}
+        </Box>
     )
 }

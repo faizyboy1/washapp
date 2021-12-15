@@ -1,6 +1,8 @@
 import {extendTheme} from 'native-base';
 
 export const customTheme = extendTheme({
+    useSystemColorMode: false,
+    initialColorMode: 'light',
     fontConfig: {
         Almarai: {
             100: {

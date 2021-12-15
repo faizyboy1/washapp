@@ -12,7 +12,7 @@ function App() {
   return (
     <AppProvider>
       <NavigationContainer>
-        <NativeBaseProvider theme={customTheme}>
+        <NativeBaseProvider colorModeManager={'light'} theme={customTheme}>
           <Stack />
         </NativeBaseProvider>
       </NavigationContainer>
