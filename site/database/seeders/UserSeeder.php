@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             ->create();
 
         // washer
-        User::factory(5)->create(['role_id' => 1]);
+        User::factory(2)->create(['role_id' => 1]);
 
 
 // client
@@ -38,6 +38,8 @@ class UserSeeder extends Seeder
 
         User::first()->update(['email' => 'a@a.com', 'phone' => '966535010102', 'is_verified' => true, 'role_id' => 0, 'remember_token' => 'e6UfBDAvJb']);
 
+        User::find(2)->update(['email' => 'b@b.com', 'phone' => '966535010103', 'is_verified' => true, 'role_id' => 1]);
+
         \DB::table('personal_access_tokens')->insert([
             'tokenable_type' => 'App\\Models\\User',
             'tokenable_id' => 1,
@@ -49,6 +51,5 @@ class UserSeeder extends Seeder
         ]);
 
 
-        User::latest()->first()->update(['email' => 'b@b.com', 'phone' => '966535010103', 'is_verified' => true, 'role_id' => 1]);
     }
 }

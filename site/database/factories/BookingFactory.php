@@ -24,7 +24,7 @@ class BookingFactory extends Factory
         return [
 
             'washer_id' => function (array $attributes) {
-                return optional(User::where('role_id', 1)->inRandomOrder()->first())->id ?? 1;
+                return optional(User::where('role_id', 1)->inRandomOrder()->first())->id ?? 2;
             },
             'client_id' => function (array $attributes) {
                 return optional(User::where('role_id', 0)->inRandomOrder()->first())->id;
