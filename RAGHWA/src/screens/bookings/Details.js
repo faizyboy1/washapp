@@ -56,7 +56,7 @@ export default ({route, navigation}) => {
                 user.washer_bookings = bookings;
                 setUser(user);
                 Toast.show({
-                    text: t('Booking Status Updated Successfully'),
+                    description: t('Booking Status Updated Successfully'),
                     status: 'success',
                     navigate: navigation.navigate('Washer'),
                 });

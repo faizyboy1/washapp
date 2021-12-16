@@ -67,7 +67,7 @@ export default ({couponDiscount, setCouponDiscount, coupon, setCoupon}) => {
                 ref={initialFocusRef}
               />
               <Button
-                  size="sm" variant="outline"
+                  size="sm"
                 isDisabled={loading || !coupon}
                 colorScheme="success"
                 onPress={() => verify()}>
