@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Home from '../screens/home';
-import Terms from '../screens/Terms';
+import Terms from '../screens/terms';
 import TellFriend from '../screens/Share';
 import Records from './tabs';
 import Cars from '../screens/cars';

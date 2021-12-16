@@ -14,7 +14,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import {useTranslation} from 'react-i18next';
-import {CarModal} from '../cars/Modal';
+import {CarModal} from '../cars/modal';
 import {AppContext} from '../../utils/AppContext';
 
 export default function ({car, setCar}) {

@@ -4,11 +4,13 @@ import {
   Button,
   Center,
   Checkbox,
-  FormControl, HStack,
+  FormControl,
+  HStack,
   Image,
   Input,
   Link,
   NativeBaseProvider,
+  ScrollView,
   Text,
   useToast,
   VStack,
@@ -48,17 +50,17 @@ export default function register({navigation}) {
 
   const register = () => {
     // @todo validate data
-    if(!isAgreed) {
+    if (!isAgreed) {
       toast.show({
         status: 'error',
         description: t('Please Agree to terms & conditions'),
         title: t('Something went wrong'),
       });
-      return
+      return;
     }
 
     if (!name.length || !phone.length || !password.length) {
-      return
+      return;
     }
 
     let data = {
@@ -101,102 +103,99 @@ export default function register({navigation}) {
   };
 
   return (
-    <View style={globalStyles.loginView}>
-      <NativeBaseProvider>
-        <Box p="8">
-          <VStack space="5">
-            <Center px="3">
-              <Image
-                size="xl"
-                resizeMode="contain"
-                source={logoImage}
-                alt="WashApp"
-              />
-            </Center>
-            <FormControl space="3">
-              <Input
-                placeholder="Name"
-                variant="underlined"
-                size="md"
-                onChangeText={value => setName(value)}
-                value={name}
-              />
-            </FormControl>
-            <FormControl space="3">
-              <Input
-                InputLeftElement={<Text color="grey"> +966 </Text>}
-                placeholder="Phone No."
-                variant="underlined"
-                size="md"
-                onChangeText={value => setPhone(value)}
-                value={phone}
-              />
-            </FormControl>
-            <FormControl space="3">
-              <Input
-                type={show ? 'text' : 'password'}
-                variant="underlined"
-                size="md"
-                placeholder="Password"
-                onChangeText={value => setPassword(value)}
-                value={password}
-                InputRightElement={
-                  <Icon
-                    onPress={handleClick}
-                    name={show ? 'eye' : 'eye-slash'}
-                    color={show ? 'black' : 'grey'}
-                    size={20}
-                  />
-                }
-              />
-            </FormControl>
-            <FormControl space="3">
-              <Input
-                type={showC ? 'text' : 'password'}
-                variant="underlined"
-                size="md"
-                placeholder="Confirm Password"
-                onChangeText={value => setPasswordConfirmation(value)}
-                value={passwordConfirmation}
-                InputRightElement={
-                  <Icon
-                    onPress={handleClickC}
-                    name={showC ? 'eye' : 'eye-slash'}
-                    color={showC ? 'black' : 'grey'}
-                    size={20}
-                  />
-                }
-              />
-            </FormControl>
-            <Checkbox size="sm"  mt="10" value={isAgreed} onChange={setAgreed}>
-
-              <Text alignItems={'center'}>
-                {t(' I agree to ')}
-              </Text>
-              <Link
+    <ScrollView mt={4}>
+      <View style={globalStyles.loginView}>
+        <NativeBaseProvider>
+          <Box p="8">
+            <VStack space="5">
+              <Center px="3">
+                <Image
+                  size="xl"
+                  resizeMode="contain"
+                  source={logoImage}
+                  alt="WashApp"
+                />
+              </Center>
+              <FormControl space="3">
+                <Input
+                  placeholder="Name"
+                  variant="underlined"
+                  size="md"
+                  onChangeText={value => setName(value)}
+                  value={name}
+                />
+              </FormControl>
+              <FormControl space="3">
+                <Input
+                  InputLeftElement={<Text color="grey"> +966 </Text>}
+                  placeholder="Phone No."
+                  variant="underlined"
+                  size="md"
+                  onChangeText={value => setPhone(value)}
+                  value={phone}
+                />
+              </FormControl>
+              <FormControl space="3">
+                <Input
+                  type={show ? 'text' : 'password'}
+                  variant="underlined"
+                  size="md"
+                  placeholder="Password"
+                  onChangeText={value => setPassword(value)}
+                  value={password}
+                  InputRightElement={
+                    <Icon
+                      onPress={handleClick}
+                      name={show ? 'eye' : 'eye-slash'}
+                      color={show ? 'black' : 'grey'}
+                      size={20}
+                    />
+                  }
+                />
+              </FormControl>
+              <FormControl space="3">
+                <Input
+                  type={showC ? 'text' : 'password'}
+                  variant="underlined"
+                  size="md"
+                  placeholder="Confirm Password"
+                  onChangeText={value => setPasswordConfirmation(value)}
+                  value={passwordConfirmation}
+                  InputRightElement={
+                    <Icon
+                      onPress={handleClickC}
+                      name={showC ? 'eye' : 'eye-slash'}
+                      color={showC ? 'black' : 'grey'}
+                      size={20}
+                    />
+                  }
+                />
+              </FormControl>
+              <Checkbox size="sm" mt="10" value={isAgreed} onChange={setAgreed}>
+                <Text alignItems={'center'}>{t(' I agree to ')}</Text>
+                <Link
                   onPress={() => navigation.navigate('Terms and Conditions')}
                   _text={{color: 'blue.500'}}
-
                   href="">
-                {t('Terms and Conditions')}
-
-              </Link>
-            </Checkbox>
-            <Text>
-              {' '}
-              <Link
-                _text={{color: 'blue.500'}}
-                mt={-0.5}
-                onPress={() => navigation.navigate('Login')}>
-                {t('Already Have an Account?')}
-              </Link>{' '}
-            </Text>
-          </VStack>
-          <Button mt="2" onPress={() => register()}>
-            Register
-          </Button>
-        </Box>
-      </NativeBaseProvider>
-    </View>
+                  {t('Terms and Conditions')}
+                </Link>
+              </Checkbox>
+              <Text>
+                {' '}
+                <Link
+                  _text={{color: 'blue.500'}}
+                  mt={-0.5}
+                  onPress={() => navigation.navigate('Login')}>
+                  {t('Already Have an Account?')}
+                </Link>{' '}
+              </Text>
+            </VStack>
+            <Button mt="2" onPress={() => register()}>
+              Register
+            </Button>
+          </Box>
+        </NativeBaseProvider>
+      </View>
+    </ScrollView>
   );
 }

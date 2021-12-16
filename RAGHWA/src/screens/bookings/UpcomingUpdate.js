@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {memo, useContext, useEffect, useState} from 'react';
 import {
   Box,
   Button,
@@ -12,8 +12,6 @@ import {
   VStack,
   ScrollView,
   Spinner,
-  Center,
-  Toast,
 } from 'native-base';
 import Coupon from './Coupon';
 import {useTranslation} from 'react-i18next';
@@ -23,20 +21,29 @@ import header from 'react-native/Libraries/NewAppScreen/components/Header';
 import {request} from '../../utils/useRequest';
 import {Alert} from 'react-native';
 
-export default ({navigation, route}) => {
+export default memo(({navigation, route}) => {
   const {tokenHeader} = useContext(AppContext);
   const {car, slot, region} = route.params;
-  const [couponDiscount, setCouponDiscount] = useState(null);
-  const [total, setTotal] = useState(0);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [vat, setVat] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState(2);
+  const [couponDiscount, setCouponDiscount] = useState(route.params.discount);
+  const [total, setTotal] = useState(route.params.amount);
+  const [totalAmount, setTotalAmount] = useState(route.params.total_amount);
+  const [vat, setVat] = useState(route.params.vat);
+  const [paymentMethod, setPaymentMethod] = useState(
+    route.params.payment_method_id,
+  );
   const [services, setServices] = useState([]);
-  const [mainService, setMainService] = useState(null);
+  const [showservices, setShowServices] = useState(route.params.services);
+  let main = [];
+  let extra = [];
+  route.params.services.map(val => {
+    val.id < 4 ? main.push(val) : extra.push(val);
+  });
+  const [mainService, setMainService] = useState(main[0].id);
   const [coupon, setCoupon] = useState(null);
-  const [extraServices, setExtraServices] = useState([]);
+  const [extraServices, setExtraServices] = useState(extra);
+  const [radioButton, setRadioButton] = useState('');
   const {t} = useTranslation();
-  const carType = car?.car_type_id == 2 ? 'family' : 'sedan';
+  const carType = route.params.car?.car_type_id == 2 ? 'family' : 'sedan';
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -55,11 +62,18 @@ export default ({navigation, route}) => {
       calculateTotal();
     }
   }, [couponDiscount, mainService, extraServices]);
-
+  useEffect(() => {
+    if (services?.length && showservices?.length) {
+      let check = services.find(res =>
+        showservices.some(ele => ele.id === res.id),
+      );
+      setRadioButton(check.id);
+    }
+  }, [services, showservices]);
   const calculateTotal = () => {
     // get price for the main service
     // let selectedServices = [...extraServices, mainService];
-    if (!services.length || !mainService) {
+    if (!services.length) {
       return;
     }
     let sumServices = services.reduce((n, service) => {
@@ -78,17 +92,10 @@ export default ({navigation, route}) => {
   };
 
   const submit = () => {
-    if (!mainService) {
-      Toast.show({
-        text: t('Please select the main service'),
-        status: 'error',
-      });
-      return;
-    }
     let selectedServices = [mainService, ...extraServices];
-
+    let currentDate = new Date();
     const data = {
-      booked_date: '14-11-2021',
+      booked_date: currentDate,
       address_id: 1, //todo insert new address if there is no address
       region,
       payment_method_id: paymentMethod,
@@ -101,8 +108,8 @@ export default ({navigation, route}) => {
     request({
       ...tokenHeader,
       ...{
-        method: 'post',
-        url: '/bookings',
+        url: `/bookings/${route.params.id}`,
+        method: 'patch',
         data,
       },
     })
@@ -123,22 +130,12 @@ export default ({navigation, route}) => {
     if (!services.length) {
       return;
     }
-
     return services.slice(3).map(service => {
+      let check = showservices.some(e => e.id === service.id);
       return (
-        <Box
-          _dark={{
-            borderColor: 'gray.600',
-          }}
-          borderColor="coolGray.400"
-          p={2}
-          flexDirection="row"
-          alignItems="center"
-          justify="space-between">
-          <Checkbox value={service.id} mx="2"></Checkbox>
-          <Text> {service.name}</Text>
-          <Text color={'red.800'}> {service[carType + '_price'] + ' SAR'}</Text>
-        </Box>
+        <Checkbox key={service.id} value={service.id} isChecked={check} my="1">
+          {service.name + ' : ' + service[carType + '_price']}
+        </Checkbox>
       );
     });
   };
@@ -147,30 +144,38 @@ export default ({navigation, route}) => {
     if (!services.length) {
       return;
     }
+    // return services.map((service, index) =>{
+    //   if (index < 3){
+    //     let check = showservices.some(e => e.id === service.id);
+    //     return {
+    //       id:service.id,
+    //       lable:service.name + ' : ' + service[carType + '_price'],
+    //       value:service.id,
+    //     }
+    //   }
+    // }
+
     return services.map((service, index) => {
       if (index < 3) {
+        let check = showservices.some(e => e.id === service.id);
         return (
-          <Box
-            _dark={{
-              borderColor: 'gray.600',
-            }}
-            borderColor="coolGray.400"
-            p={2}
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="space-between">
-            <Radio value={service.id} my="1" flex={1}></Radio>
-            <Text> {service.name}</Text>
-            <Text color={'red.800'}>
-              {' '}
-              {service[carType + '_price'] + ' SAR'}
-            </Text>
-          </Box>
+          <Radio
+            key={service.id}
+            value={service.id}
+            my="1"
+            isDisabled={check}
+            // defaultIsChecked={check}
+            // selected={check}
+            // isTVSelectable={check}
+            // isChecked={check}
+            // {(showservices.some(e => e.id === service.id) ? selected : '')}
+          >
+            {service.name + ' : ' + service[carType + '_price']}
+          </Radio>
         );
       }
     });
   };
-
   if (loading) {
     return <Spinner color={'cyan.100'} />;
   }
@@ -184,60 +189,45 @@ export default ({navigation, route}) => {
       <Divider my={3} />
       <Text>{t('Main Service')}</Text>
       <Radio.Group
-        defaultValue="1"
+        // defaultValue="1"
+        value={radioButton}
         name="paymentMethod"
         onChange={nextValue => {
           setMainService(nextValue);
         }}>
-        <HStack justify={'center'} space={4}>
-          {renderMainServices()}
-        </HStack>
+        {renderMainServices()}
       </Radio.Group>
 
       <Divider my={3} />
-      <Text>{t('Raghwa Extra Service')}</Text>
+      <Text>{t('Extra Service')}</Text>
       <Checkbox.Group
         colorScheme="green"
-        size={'2xl'}
         defaultValue={extraServices}
         accessibilityLabel="pick an item"
         onChange={values => {
           setExtraServices(values || []);
         }}>
-        <VStack justify={'center'} flex={1}>
-          {renderExtraServices()}
-        </VStack>
+        {renderExtraServices()}
       </Checkbox.Group>
       <Divider my={3} />
-      <Center>
-        <HStack space={7} alignItems="center" justify="center" my={2}>
-          <VStack alignItems="center">
-            <Text>{t('Total')}</Text>
-            <Text>{total}</Text>
-          </VStack>
-          <VStack alignItems="center">
-            <Text>{t('VAT')}</Text>
-            <Text>{vat}</Text>
-          </VStack>
-          <VStack alignItems="center">
-            <Text>{t('Total Amount')}</Text>
-            <Text>{totalAmount}</Text>
-          </VStack>
-          {/*{typeof couponDiscount === 'number' && (*/}
-          {/*  <Text>*/}
-          {/*    {t('Discount')}% {couponDiscount}*/}
-          {/*  </Text>*/}
-          {/*)}*/}
-        </HStack>
-      </Center>
-      <Divider my={3} />
-      <Coupon
-        coupon={coupon}
-        setCoupon={setCoupon}
-        couponDiscount={couponDiscount}
-        setCouponDiscount={setCouponDiscount}
-      />
-      <Divider my={3} />
+      <HStack space={3} alignItems="center" my={5}>
+        <Box>
+          <Text>{t('Total') + ': ' + total}</Text>
+          <Text>{t('VAT') + ': ' + vat}</Text>
+          <Text>{t('Total Amount') + ': ' + totalAmount}</Text>
+          {typeof couponDiscount === 'number' && (
+            <Text>
+              {t('Discount')}% {couponDiscount}
+            </Text>
+          )}
+        </Box>
+        <Coupon
+          coupon={coupon}
+          setCoupon={setCoupon}
+          couponDiscount={couponDiscount}
+          setCouponDiscount={setCouponDiscount}
+        />
+      </HStack>
       <Radio.Group
         mb={5}
         defaultValue="2"
@@ -260,4 +250,4 @@ export default ({navigation, route}) => {
       </Button>
     </ScrollView>
   );
-};
+});

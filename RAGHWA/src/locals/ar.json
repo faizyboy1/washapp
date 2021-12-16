@@ -61,5 +61,8 @@
   "Car Added Successfully": "تم إضافة السيارة بنجاح",
   "Car Updated Successfully": "تم تحديث السيارة بنجاح",
   "Car Deleted Successfully": "تم حذف السيارة بنجاح",
-  "Washer": ""
+  "Washer": "",
+  "Update Schedule":"تحديث الجدول",
+  "Please Search The address":"الرجاء البحث في العنوان"
+
 }

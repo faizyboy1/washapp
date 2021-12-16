@@ -13,6 +13,8 @@ target 'RAGHWA' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-paymentsdk', :path => '../node_modules/@paytabs/react-native-paytabs'
+
   target 'RAGHWATests' do
     inherit! :complete
     # Pods for testing
